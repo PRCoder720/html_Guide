@@ -1,478 +1,609 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-
-
-<style>
-  /* Dark Mode Base */
-  body,
-  html {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-  }
-
-  /* Image styling */
-  header img {
-    width: 50%;
-    height: auto;
-    border-radius: 15px;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .product-box img {
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: 55%;
-    height: auto;
-    border-radius: 15px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-  }
-
-  /* Base section styling */
-  header,
-  footer {
-    text-align: center;
-    background-color: #1a1a1a;
-  }
-
-  section {
-    max-width: 1200px;
-    margin: 0 auto 30px auto;
-    padding: 20px 0;
-    background-color: #1a1a1a;
-  }
-
-  header {
-    padding: 30px 20px;
-  }
-
-  footer {
-    padding: 40px 20px;
-    background-color: #151515;
-    border-top: 1px solid #333;
-  }
-
-  /* Product Box Styling */
-  .product-box {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
-    border: 2px solid #444444;
-    border-radius: 15px;
-    padding: 24px;
-    margin: 0 auto;
-    max-width: 1200px;
-    background-color: #2a2a2a;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  .product-box.banner-box {
-    border: 2px solid #4a9eff;
-    box-shadow: 0 2px 12px rgba(74, 158, 255, 0.15);
-    max-width: 900px;
-  }
-
-  .product-content {
-    flex: 1;
-    text-align: left;
-  }
-
-  /* Typography */
-  p.intro {
-    font-size: 1.2em;
-    color: #aaaaaa;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-
-  p {
-    font-size: 1.05em;
-    line-height: 1.7;
-    color: #e0e0e0;
-    margin: 0 0 16px 0;
-  }
-
-  h1 {
-    color: #ffffff;
-  }
-
-  h2 {
-    color: #ffffff;
-    text-align: center;
-    font-size: 2em;
-    margin: 40px 0 20px 0;
-  }
-
-  h3 {
-    font-size: 1.8em;
-    color: #ffffff;
-    margin: 0 0 15px 0;
-  }
-
-  a {
-    color: #4a9eff;
-  }
-
-  a:hover {
-    color: #7db8ff;
-  }
-
-  strong {
-    color: #ffffff;
-  }
-
-  ul {
-    margin: 0 0 16px 25px;
-    padding: 0;
-    font-size: 1.05em;
-    line-height: 1.7;
-    color: #e0e0e0;
-  }
-
-  li {
-    margin: 0 0 6px 0;
-  }
-
-  ol {
-    margin: 0;
-    padding-left: 25px;
-    font-size: 1.05em;
-    line-height: 1.8;
-    color: #e0e0e0;
-  }
-
-  /* CTA Button */
-  .cta-button {
-    display: inline-block;
-    margin-top: 5px;
-    padding: 14px 28px;
-    background-color: #ffffff;
-    color: #1a1a1a;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    font-weight: 600;
-  }
-
-  .cta-button:hover {
-    background-color: #e0e0e0;
-    color: #1a1a1a;
-  }
-
-  /* Jump Menu Styling - Dark */
-  #autobongs-jump-menu {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    background-color: rgba(26, 26, 26, 0.98);
-    padding: 10px 10px 12px 10px;
-    border-bottom: 1px solid #333333;
-  }
-
-  #autobongs-menu-toggle {
-    width: 100%;
-    max-width: 400px;
-    display: block;
-    margin: 0 auto 8px auto;
-    padding: 12px 16px;
-    border-radius: 999px;
-    border: 1px solid #555555;
-    background-color: #1f1f1f;
-    color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-
-  #autobongs-menu-toggle:hover {
-    background-color: #2a2a2a;
-  }
-
-  #autobongs-menu-links {
-    display: none;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    padding: 10px 0;
-  }
-
-  #autobongs-menu-links a {
-    display: inline-block;
-    padding: 10px 16px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    border: 1px solid #555555;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #262626;
-    transition: background-color 0.2s ease;
-  }
-
-  #autobongs-menu-links a:hover {
-    background-color: #3a3a3a;
-  }
-
-  .menu-divider {
-    width: 100%;
-    text-align: center;
-    font-size: 0.65rem;
-    color: #888888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 8px 0 4px 0;
-  }
-
-  /* Section wrapper */
-  .guide-wrapper {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-    padding: 20px 10px;
-  }
-</style>
-
+<div id="autobongs-guide-wrapper" style="background-color: #1a1a1a; color: #e0e0e0; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; line-height: 1.7; font-size: 20.8px; box-sizing: border-box; padding: 20px 10px; margin: 0;">
 <!-- STICKY JUMP MENU (COLLAPSIBLE) -->
-<div id="autobongs-jump-menu">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <!-- Toggle button -->
-    <button id="autobongs-menu-toggle" type="button">
-      ☰ Jump to Section
-    </button>
-
-    <!-- Links wrapper (collapsed by default) -->
-    <div id="autobongs-menu-links">
-
-      <!-- Intro / Top -->
-      <a href="#section-top">Top</a>
-
-      <!-- Section Divider: Core Devices -->
-      <span class="menu-divider">— Core Devices —</span>
-
-      <a href="#section-bongs">Bongs</a>
-      <a href="#section-bubblers">Bubblers</a>
-      <a href="#section-hand-pipes">Hand Pipes</a>
-      <a href="#section-dry-herb-vapes">Dry Herb Vaporizers</a>
-
-      <!-- Section Divider: Concentrates -->
-      <span class="menu-divider">— Concentrates —</span>
-
-      <a href="#section-dab-rigs">Dab Rigs</a>
-      <a href="#section-concentrate-vapes">Concentrate Vaporizers</a>
-
-      <!-- Section Divider: Accessories -->
-      <span class="menu-divider">— Accessories —</span>
-
-      <a href="#section-dry-herb-accessories">Dry Herb Accessories</a>
-      <a href="#section-concentrate-accessories">Concentrate Accessories</a>
-      <a href="#section-universal-accessories">Universal Accessories</a>
-
-      <!-- Section Divider: Leveling Up -->
-      <span class="menu-divider">— Leveling Up —</span>
-
-      <a href="#section-advancing-banner">Advancing Overview</a>
-      <a href="#section-electric-wax-vapes">Dab Pens</a>
-      <a href="#section-510-cartridge-vapes">510 Carts</a>
-      <a href="#section-portable-dry-herb-vapes">Portable Herb Vapes</a>
-      <a href="#section-bag-vaporizers">Bag Vaporizers</a>
-
-      <!-- Section Divider: Dry Herb Guide -->
-      <span class="menu-divider">— Dry Herb Guide —</span>
-
-      <a href="#section-storage">Storage Accessories</a>
-      <a href="#section-grinders">Grinders &amp; Mills</a>
-
-      <!-- Section Divider: Concentrates Guide -->
-      <span class="menu-divider">— Concentrates Guide —</span>
-
-      <a href="#section-concentrate-temps">Temperature Guide</a>
-      <a href="#section-perc-recycler">Percolation &amp; Recyclers</a>
-
-      <!-- Help -->
-      <span class="menu-divider">— Help —</span>
-      <a href="#section-chat-footer">Chat Assistant</a>
-    </div>
-  </div>
+<div id="autobongs-jump-menu" style="position: sticky; top: 0; z-index: 999; background-color: rgba(26,26,26,0.98); padding: 10px 10px 12px 10px; border-bottom: 1px solid #333333;">
+<div style="max-width: 1200px; margin: 0 auto;">
+<!-- Toggle button --> <button id="autobongs-menu-toggle" type="button" style="width: 100%; max-width: 400px; display: block; margin: 0 auto 8px auto; padding: 10px 14px; border-radius: 999px; border: 1px solid #555555; background-color: #1f1f1f; color: #ffffff; font-size: 0.625rem; font-weight: 600; cursor: pointer;"> ☰ Sections </button> <!-- Links wrapper (collapsed by default) -->
+<div id="autobongs-menu-links" style="display: none; flex-wrap: wrap; gap: 10px; justify-content: center;">
+<!-- Intro / Top --> <a href="#section-top" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Top</a> <!-- Core Devices --> <a href="#section-bongs" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Bongs</a> <a href="#section-bubblers" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Bubblers</a> <a href="#section-hand-pipes" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Hand Pipes</a> <a href="#section-dry-herb-vapes" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Dry Herb Vaporizers</a> <!-- Concentrates --> <a href="#section-dab-rigs" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Dab Rigs</a> <a href="#section-concentrate-vapes" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Concentrate Vaporizers</a> <!-- Accessories --> <a href="#section-dry-herb-accessories" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Dry Herb Accessories</a> <a href="#section-concentrate-accessories" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Concentrate Accessories</a> <a href="#section-universal-accessories" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Universal Accessories</a> <!-- Advanced Gear --> <a href="#section-advanced-banner" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Advanced Overview</a> <a href="#section-bowl-pieces" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Bowl Pieces</a> <a href="#section-ash-catchers" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Ash Catchers</a> <a href="#section-bangers" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Bangers</a> <a href="#section-enails" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Electric Nails</a> <a href="#section-terp-pearls" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Terp Pearls</a> <a href="#section-bong-techniques" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Bong Techniques</a> <a href="#section-percolators" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Percolators</a> <!-- How-To Guides --> <a href="#section-how-to-dab-banger" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">How to Dab</a> <a href="#section-how-to-torch" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Torch &amp; Dab Rig</a> <a href="#section-how-to-enail" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Use an E-Nail</a> <a href="#section-how-to-bong-hit" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Take a Bong Hit</a> <a href="#section-how-to-pack-bowl" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Pack a Bowl</a> <a href="#section-chat-footer" style="display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: 0.6rem; border: 1px solid #555555; text-decoration: none; color: #ffffff; background-color: #262626;">Chat Assistant</a>
 </div>
+</div>
+</div>
+<!-- HEADER --><header id="section-top" style="max-width: 1200px; margin: 0 auto 20px auto; text-align: center; padding: 30px 20px; background-color: #1a1a1a; color: #ffffff;">
+<h1 style="font-size: 2.4em; color: #ffffff; margin: 0 0 20px 0;">Beginner's Guide to Our Products &amp; Features</h1>
+<p class="intro" style="font-size: 1.15em; color: #e0e0e0; margin: 0 auto 22px auto; max-width: 900px; text-align: center;">Welcome to Autobongs! If you're new to smoke shop products the variety can feel overwhelming. We're here to make it easy and straightforward.</p>
+<p class="intro" style="text-align: center; font-size: 1.05em; color: #e0e0e0; margin: 0 auto 24px auto; max-width: 900px;"><img src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_44_25_PM.png?v=1761162274" alt="" style="width: 55%; max-width: 500px; height: auto; border-radius: 15px; display: block; margin: 0 auto;"></p>
+<br>
+<p style="text-align: center; font-size: 1.1em; color: #ffffff; margin: 0 auto 40px auto; max-width: 900px;">Consumption materials come in two main forms: <strong style="color: #ffffff;">dried herbs</strong> (dried plant material) and <strong style="color: #ffffff;">concentrated herbs</strong> (purified extracts like oils or waxes, concentrated versions of the dried form). Each works with different devices designed specifically for that material type.</p>
+</header><!-- BONGS -->
+<section id="section-bongs" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Bong Water Pipe" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_09_07_02_AM.png?v=1761145660" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Bongs (Water Pipes)</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Water pipes use water filtration to cool and filter smoke before you inhale, creating a smoother experience that's easier on your throat and lungs. If you’re sensitive to harsh smoke, a bong is often the most comfortable place to start with traditional combustion.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> beaker bongs for stability and larger water volume, straight-tube bongs that clear quickly and are easy to clean, recycler bongs with looping water paths for extra cooling and flavor, mini/travel bongs for compact setups, and percolator bongs with built-in “percs” (honeycomb, tree, showerhead, etc.) for added diffusion.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> borosilicate glass for clean flavor and visual appeal, silicone for flexible, nearly unbreakable travel pieces, and glass/silicone hybrid designs that mix durability with a premium feel.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who want smoother, cooler hits than a dry pipe or joint.</li>
+<li style="margin: 0 0 6px 0;">At-home or session-style use with friends.</li>
+<li style="margin: 0 0 6px 0;">Users who enjoy the ritual of packing, lighting, and clearing a water pipe.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Maximum portability and pockets-only setups.</li>
+<li style="margin: 0 0 6px 0;">Very discreet use, since bongs produce larger clouds and some smell.</li>
+<li style="margin: 0 0 6px 0;">Anyone who never wants to deal with water changes or glass cleaning.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> Budget pieces around $30–$70, mid-range bongs with thicker glass and percs around $70–$200, and premium or artist-made “heady” pieces $200 and up.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try a bong:</strong> If you want classic smoke with maximum smoothness, bongs deliver. They’re highly customizable, fun to collect, and—when cared for—can be a long-lasting centerpiece of your setup.</p>
+<a href="https://autobongs.com/collections/bongs" style="display: inline-block; margin-top: 5px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> Explore our bongs </a>
+</div>
+</div>
+</section>
+<!-- BUBBLERS -->
+<section id="section-bubblers" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Bubbler" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/Bubber2.png?v=1764633231" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Bubblers (Compact Water Pipes)</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Bubblers provide the same water-filtered smoothness as traditional bongs but in a portable, handheld size. These compact water pipes are easy to use anywhere and offer excellent portability without sacrificing filtration quality.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> hammer bubblers that sit flat and feel solid in the hand, Sherlock-style bubblers with a curved neck for a classic look, side-car bubblers that reduce water splashback, and mini bubblers that stay small while still using a bit of water to cool smoke.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> glass for clean flavor and a clear view of smoke and water, silicone for tougher, travel-ready pieces, and glass/silicone combos that balance durability and taste.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Users who want some water filtration but not a full-size bong.</li>
+<li style="margin: 0 0 6px 0;">On-the-go or small-space use where you can still access a little water.</li>
+<li style="margin: 0 0 6px 0;">People who like easy one-hand operation and straightforward function.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Huge, extra-long pulls (they have smaller chambers than big bongs).</li>
+<li style="margin: 0 0 6px 0;">Ultra-discreet pocket carry (still bulkier than a tiny pipe or vape pen).</li>
+<li style="margin: 0 0 6px 0;">Anyone who wants to avoid water completely.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> Budget bubblers around $25–$60, mid-range options with percs or thicker glass $60–$120, and premium or branded styles $120 and up.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try a bubbler:</strong> Bubblers sit right between a pipe and a bong. If you want smoother hits than a dry pipe while keeping things compact and simple, a bubbler is the perfect hybrid choice.</p>
+<a href="https://autobongs.com/collections/bubblers" style="display: inline-block; margin-top: 5px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> Browse our bubbler collection </a>
+</div>
+</div>
+</section>
+<!-- HAND PIPES -->
+<section id="section-hand-pipes" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Hand Pipe" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_09_16_04_AM.png?v=1761146174" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Hand Pipes</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Hand pipes are the simplest smoking option available. These small, portable devices require no water or complicated setup. Perfect for beginners and experienced users alike.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> spoon pipes with the classic bowl-and-stem shape, chillums and one-hitters for quick, tiny hits, Sherlock pipes with a curved neck, steamrollers for strong, fast-clearing hits, and novelty or character pipes that bring fun shapes and themes.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> glass for clean flavor and endless designs, metal for ultra-durable pocket pieces, wood for a warmer, natural feel, stone or ceramic for artistic and sturdy home pieces, and silicone for almost unbreakable travel pipes.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Quick, simple sessions with minimal setup.</li>
+<li style="margin: 0 0 6px 0;">Pocket-friendly, toss-in-a-bag use.</li>
+<li style="margin: 0 0 6px 0;">Micro-dosing or taking just a hit or two at a time.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People with very sensitive lungs who need lots of cooling.</li>
+<li style="margin: 0 0 6px 0;">Large group sessions where smoother, bigger hits are preferred.</li>
+<li style="margin: 0 0 6px 0;">Anyone who dislikes warmer, more direct smoke.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> Budget pipes around $10–$30, mid-range pieces with thicker glass or nicer materials $30–$80, and premium or artist-made pipes $80 and above.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try a hand pipe:</strong> Hand pipes are the go-to for ease and convenience. If you want something you can grab, load, and use in seconds, a hand pipe is your most reliable everyday companion.</p>
+<a href="https://autobongs.com/collections/pipes" style="display: inline-block; margin-top: 5px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> View our hand pipe selection </a>
+</div>
+</div>
+</section>
+<!-- DRY HERB VAPORIZERS -->
+<section id="section-dry-herb-vapes" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Dry Herb Vaporizer" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_04_32_PM.png?v=1761159929" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Dry Herb Vaporizers</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Flower vaporizers heat dried herbs to release active ingredients as vapor without combustion. This produces less smoke, less odor, and is easier on your respiratory system compared to traditional smoking methods. Available in portable and desktop models.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Heating styles:</strong> conduction (herb sits directly on a heated surface, heats fast), convection (hot air passes through the herb for more even heating and flavor), and hybrid systems that combine both for balanced performance.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Form factors:</strong> portable vaporizers for everyday carry, desktop or plug-in units for powerful at-home sessions, and devices designed for either longer “session” use or quick, on-demand hits.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials used inside:</strong> ceramic ovens for even heating and clean taste, stainless steel ovens for durability and efficient performance, glass airpaths or mouthpieces for smooth flavor, and silicone or plastic exteriors to keep devices light and cool (in quality devices, these are placed away from the hottest parts).</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who want to reduce smoke and smell while still using flower.</li>
+<li style="margin: 0 0 6px 0;">Users focused on lung comfort and smoother inhalation.</li>
+<li style="margin: 0 0 6px 0;">Discreet use with smaller clouds and a more subtle aroma.</li>
+<li style="margin: 0 0 6px 0;">Those who like dialing in different temperatures for taste and effect.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Folks who love the heavy, dense feel of traditional smoke.</li>
+<li style="margin: 0 0 6px 0;">Anyone who never wants to maintain or charge a device.</li>
+<li style="margin: 0 0 6px 0;">Using sticky concentrates—unless the vaporizer is specifically designed for both.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> Budget vaporizers around $40–$100, mid-range units with better batteries and temp control $100–$250, and premium desktop or flagship portables $250 and above.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try a dry herb vaporizer:</strong> If you want to treat your lungs more gently while still enjoying flower, vaporizers are an excellent upgrade. They’re efficient, more discreet, and give you more control over how each session feels.</p>
+<a href="https://autobongs.com/collections/dry-herb-vaporizers" style="display: inline-block; margin-top: 5px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> See our dry herb vaporizer collection </a>
+</div>
+</div>
+</section>
+<!-- CONCENTRATE DEVICES HEADING -->
+<h2 style="text-align: center; color: #ffffff; font-size: 2em; margin: 20px auto 10px auto;">Concentrate Smoking Devices</h2>
+<p style="text-align: center; color: #e0e0e0; margin: 0 auto 30px auto; max-width: 900px; font-size: 1.1em;">These specialized devices are designed for oils, waxes, and other concentrated extracts.</p>
+<!-- DAB RIGS -->
+<section id="section-dab-rigs" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Dab Rig" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_07_20_PM.png?v=1761160206" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Dab Rigs (Concentrate Water Pipes)</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Dab rigs are water pipes specifically designed for concentrated products. Since concentrates are more potent than flower, you typically need only one or two inhalations per session. Dab rigs are available in traditional styles (torch-heated), electric models (battery-powered), or convertible designs that work with both materials.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> standard glass rigs with a joint for a banger or nail, recycler rigs that loop water for extra cooling and smoothness, mini or micro rigs that keep vapor dense and flavorful, and e-rigs that build heat and control into an all-in-one electronic package.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> borosilicate glass rigs for clean flavor, quartz bangers for excellent heat retention and flavor, titanium or ceramic nails for durability and specific heating characteristics, and silicone rigs with glass or quartz inserts for tough, travel-ready setups.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who regularly use concentrates and want proper tools.</li>
+<li style="margin: 0 0 6px 0;">Strong effects in just one or two hits.</li>
+<li style="margin: 0 0 6px 0;">Flavor hunters who like exploring different temperatures.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Complete beginners who aren’t ready for concentrate potency.</li>
+<li style="margin: 0 0 6px 0;">Very discreet use, since rigs still produce visible vapor and some smell.</li>
+<li style="margin: 0 0 6px 0;">Anyone who doesn’t want to learn torch timing (unless they choose an e-rig).</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> Budget rigs around $50–$120, mid-range rigs and some e-rigs $120–$300, and premium heady glass or flagship e-rigs $300 and up.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try a dab rig:</strong> If you’re already using concentrates or want to explore them, a dedicated rig provides cleaner flavor, better control, and more efficient use of your material than improvised setups.</p>
+<a href="https://autobongs.com/collections/dab-rigs" style="display: inline-block; margin-top: 5px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> Shop our dab rig collection </a>
+</div>
+</div>
+</section>
+<!-- CONCENTRATE VAPORIZERS -->
+<section id="section-concentrate-vapes" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Concentrate Vaporizer" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_13_18_PM.png?v=1761160408" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Concentrate Vaporizers</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">These portable devices heat concentrates quickly and discreetly, producing minimal odor. Concentrate vaporizers are convenient for both home and travel use, offering precise temperature control and efficient consumption.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common types:</strong> wax pens with small coils or cups for wax and oils, nectar collectors you dip directly into concentrates, portable e-rigs that function like mini dab rigs in the hand, and simple cartridge batteries for pre-filled concentrate carts.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Heating and materials:</strong> quartz coils and cups for strong, flavorful hits, ceramic coils and cups for smooth and gentle vapor, stainless steel chambers for durability, and glass mouthpieces for improved taste.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Discreet concentrate use with less smell and minimal gear.</li>
+<li style="margin: 0 0 6px 0;">People who want dab-like effects without a torch and full rig.</li>
+<li style="margin: 0 0 6px 0;">Travel, outdoor use, and small-space sessions.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Giant “show-off” clouds that big glass rigs can provide.</li>
+<li style="margin: 0 0 6px 0;">People who don’t use concentrates often and might not need more than a basic nail.</li>
+<li style="margin: 0 0 6px 0;">Users who strongly prefer the ritual of a full dab rig setup.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> Budget pens around $25–$70, mid-range devices and some e-rigs $70–$180, and premium e-rigs or advanced multi-mode pens $180 and above.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try a concentrate vaporizer:</strong> If you enjoy the potency and flavor of concentrates but want something compact, low-maintenance, and easy to use on the go, concentrate vaporizers are a great choice.</p>
+<a href="https://autobongs.com/collections/concentrated-herb-vaporizers" style="display: inline-block; margin-top: 5px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> Check out concentrate vaporizers </a>
+</div>
+</div>
+</section>
+<!-- ESSENTIAL SMOKING ACCESSORIES -->
+<section style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<h2 style="text-align: center; font-size: 2em; color: #ffffff; margin: 0 0 10px 0;">Essential Smoking Accessories</h2>
+<p style="text-align: center; color: #e0e0e0; margin: 0 auto 30px auto; max-width: 900px; font-size: 1.1em;">The right accessories enhance your experience and keep your devices functioning properly.</p>
+<!-- Dry Herb Accessories -->
+<div id="section-dry-herb-accessories" class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto 24px auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Dry Herb Accessories" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_32_22_PM.png?v=1761161561" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Accessories for Dry Herb Devices</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Herb grinders</strong> prepare your material for optimal use, ensuring even burning and better airflow. <strong style="color: #ffffff;">Replacement bowls, downstems, and screens</strong> keep everything functioning smoothly. <strong style="color: #ffffff;">Ash catchers</strong> help maintain a cleaner setup between sessions and reduce cleaning frequency. <strong style="color: #ffffff;">Rolling trays</strong> provide a clean, organized workspace for preparation.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common accessory types:</strong> 2-piece, 3-piece, and 4-piece grinders; bowls and slides in different shapes and sizes; downstems to connect bowls to bongs; screens to prevent small pieces from pulling through; ash catchers that trap debris; and rolling trays to keep everything neat.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> grinders in aluminum, stainless steel, plastic, and wood; bowls and downstems in glass, quartz, silicone, or metal; ash catchers typically in glass; and trays made from metal, plastic, glass, or wood.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Anyone using dry herb regularly, regardless of device type.</li>
+<li style="margin: 0 0 6px 0;">Improving airflow, flavor, and consistency of each bowl.</li>
+<li style="margin: 0 0 6px 0;">Keeping your main pieces cleaner and easier to maintain.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who prefer a “bare minimum” setup and don’t mind more frequent cleaning.</li>
+<li style="margin: 0 0 6px 0;">Ultra-minimalists who want to carry as little gear as possible.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> grinders around $10–$80, bowls/downstems/screens often $5–$40 each, ash catchers typically $20–$100, and rolling trays around $10–$40.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try dry herb accessories:</strong> The right accessories turn an okay setup into a great one. Better grinding, cleaner airflow, and less mess all add up to smoother, more enjoyable sessions.</p>
+<a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 5px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> Check out Dry Herb Accessories </a>
+</div>
+</div>
+<!-- Concentrate Accessories -->
+<div id="section-concentrate-accessories" class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto 24px auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Concentrate Accessories" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_35_27_PM.png?v=1761161737" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Accessories for Concentrate Devices</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Carb caps, bangers, and quartz inserts</strong> are essential components for optimal dab rig performance. <strong style="color: #ffffff;">Terp pearls</strong> enhance vapor quality and distribution, ensuring you get the most from your concentrates. <strong style="color: #ffffff;">Dab tools</strong> help you handle sticky materials safely and precisely.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common accessory types:</strong> quartz, ceramic, and titanium bangers or nails; carb caps that help control airflow and temperature; terp pearls and inserts to spread heat and concentrate; and dab tools designed to pick up and place different textures of concentrates.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> quartz for clean flavor and quick heating, titanium for long-lasting durability, ceramic for smooth and even heating, and glass or metal dab tools for safe, precise handling.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Anyone using dab rigs or e-rigs who wants consistent, efficient dabs.</li>
+<li style="margin: 0 0 6px 0;">Maximizing flavor and reducing waste from concentrates.</li>
+<li style="margin: 0 0 6px 0;">Dialing in low-temp, flavorful hits as well as stronger, hotter dabs.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who only use cartridges or simple concentrate pens.</li>
+<li style="margin: 0 0 6px 0;">Minimalists who don’t want extra parts or tools.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> bangers and nails around $15–$80, carb caps $10–$60, terp pearls and inserts around $5–$40, and dab tools $5–$30.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try concentrate accessories:</strong> These tools unlock the full potential of your concentrates, giving you better flavor, smoother hits, and more control over each session.</p>
+<a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 5px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> Check out Concentrated Herb Accessories </a>
+</div>
+</div>
+<!-- Universal Accessories -->
+<div id="section-universal-accessories" class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Universal Accessories" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_37_38_PM.png?v=1761161867" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Universal Accessories</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Protective cases</strong> safeguard your equipment during storage and travel, preventing damage and keeping everything organized. <strong style="color: #ffffff;">Cleaning supplies</strong> (including solutions, brushes, and cleaning tools) keep all devices working their best and extend product lifespan. <strong style="color: #ffffff;">Replacement batteries</strong> ensure your electric devices and vaporizers stay powered when you need them.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common accessory types:</strong> hard and soft cases, smell-proof bags and containers, cleaning kits with solutions and brushes, replacement batteries and chargers for vaporizers and e-rigs, and multi-tools for packing, scraping, and maintenance.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> padded fabric, nylon, or hard plastic for cases; plastic, metal, silicone, and cotton for cleaning tools; and certified electronic components designed to match your specific devices.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Anyone who wants their gear to last longer and perform better.</li>
+<li style="margin: 0 0 6px 0;">Travelers, campers, and people who move their gear around often.</li>
+<li style="margin: 0 0 6px 0;">Keeping your setup clean, organized, and discreet.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who use gear very rarely and don’t mind basic storage.</li>
+<li style="margin: 0 0 6px 0;">Those who aren’t concerned with protecting inexpensive pieces.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> cases and bags around $15–$80, cleaning kits $10–$40, and replacement batteries or chargers usually $15–$60+ depending on the device.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 20px 0;"><strong style="color: #ffffff;">Why try universal accessories:</strong> Clean, protected gear tastes better, works better, and lasts longer. These accessories help you get more enjoyment and value from every product you own.</p>
+</div>
+</div>
+</section>
+<!-- ADVANCED BANNER + SECTIONS -->
+<section id="section-advanced-banner" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 900px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<div class="product-content" style="flex: 1; text-align: center;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Feeling more advanced? Keep going.</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0;">Once you’re comfortable with the basics, you can fine-tune your setup with more advanced parts and techniques. These upgrades help you customize your experience for smoother hits, better flavor, and easier maintenance.</p>
+</div>
+</div>
+</section>
+<!-- BOWL PIECES -->
+<section id="section-bowl-pieces" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Bowl Pieces for Bongs" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/Bowl2.png?v=1764083219" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Bowl Pieces for Bongs</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Bowl pieces are where your herb sits on a bong or bubbler. Upgrading your bowl can change how much you pack per hit, how easily it clears, and how simple it is to keep your setup clean.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> deep snap bowls for bigger hits, smaller “party” bowls for sharing and control, funnel bowls that clear quickly, and screen-style or built-in-screen bowls that help keep ash out of your water.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Joint sizes and gender:</strong> most modern pieces use 10mm, 14mm, or 18mm joints, in either male or female styles. Matching your bowl size and gender to your bong is important for a proper fit and seal.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> borosilicate glass for clean flavor and color options, quartz for extra durability and heat tolerance, ceramic for a smooth, even heat, and metal or silicone options for people who prioritize toughness.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Dialing in how much herb you use per bowl.</li>
+<li style="margin: 0 0 6px 0;">Improving airflow, clearing, and ease of use.</li>
+<li style="margin: 0 0 6px 0;">Customizing the look and feel of your bong.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who are still figuring out the basics and don’t yet know what style they prefer.</li>
+<li style="margin: 0 0 6px 0;">Anyone who isn’t sure of their joint size and might grab the wrong fit.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> simple glass bowls around $10–$25, more detailed or color-worked bowls $25–$60, and premium or heady artist bowls higher than that.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0;"><strong style="color: #ffffff;">Why try upgraded bowl pieces:</strong> A better bowl can make your bong easier to use, easier to clear, and more fun to look at. It’s one of the simplest ways to personalize your setup.</p>
+<!-- NEW BUTTON --> <a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 10px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> click here to check out some products. </a>
+</div>
+</div>
+</section>
+<!-- ASH CATCHERS -->
+<section id="section-ash-catchers" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Ash Catchers for Bongs" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/AshCatch2.png?v=1764083537" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Ash Catchers for Bongs</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Ash catchers are add-on chambers that sit between your bowl and bong. They trap ash and debris before it reaches your main piece, helping your bong stay cleaner and often adding extra water filtration.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> simple dry ash catchers that just catch debris, water-based ash catchers with percs for extra diffusion, and specialized designs with recyclers, showerheads, or honeycomb discs for smoother hits.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Joint angles and sizes:</strong> most ash catchers come in 45° or 90° joint angles to match your bong’s design, and use 10mm, 14mm, or 18mm joints. Matching angle and size keeps everything stable and upright.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> mainly borosilicate glass so you can see the water and ash level, sometimes with colored accents or thicker walls for durability.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Keeping your main bong cleaner for longer between deep cleans.</li>
+<li style="margin: 0 0 6px 0;">Adding extra filtration and cooling to your hits.</li>
+<li style="margin: 0 0 6px 0;">People who like modular setups and swapping parts.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Very small bongs where added weight might make them tip.</li>
+<li style="margin: 0 0 6px 0;">Users who want the absolute simplest, lightest setup.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> basic ash catchers around $20–$40, more complex percolating designs $40–$100+, depending on thickness and perc style.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0;"><strong style="color: #ffffff;">Why try an ash catcher:</strong> If you like your bong but don’t love cleaning it constantly, an ash catcher acts like a “pre-filter” so your main piece stays fresher for longer.</p>
+<!-- NEW BUTTON --> <a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 10px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> click here to check out some products. </a>
+</div>
+</div>
+</section>
+<!-- BANGERS -->
+<section id="section-bangers" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Bangers for Dab Rigs" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/Banger2.png?v=1764083682" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Bangers for Dab Rigs</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Bangers are the bucket-shaped pieces you heat and place concentrates into on a dab rig. The right banger can change how evenly your concentrate vaporizes, how long it holds heat, and how easy it is to keep clean.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> flat-top bangers that work with most carb caps, slanted-top designs, thermal or double-walled bangers that help retain heat, round-bottom styles that are easier to clean, and auto-spinner designs made for terp pearls.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> quartz for clean flavor and quick heating, ceramic for gentle, even heat, and titanium for heavy-duty durability and fast recovery between dabs.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who want better flavor and more consistent dabs.</li>
+<li style="margin: 0 0 6px 0;">Dialing in low-temp dabs or longer heat retention.</li>
+<li style="margin: 0 0 6px 0;">Pairing with carb caps and terp pearls for advanced setups.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Absolute beginners who are still learning basic dab timing.</li>
+<li style="margin: 0 0 6px 0;">Users who only take very occasional dabs and don’t need more than a basic nail.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> simpler quartz bangers around $15–$40, specialty shapes and thicker walls $40–$100+, and premium brand or artist-made pieces above that.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0;"><strong style="color: #ffffff;">Why try a better banger:</strong> Upgrading your banger can dramatically improve taste and consistency. It’s one of the most important parts of a dab rig once you move beyond the basics.</p>
+<!-- NEW BUTTON --> <a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 10px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> click here to check out some products. </a>
+</div>
+</div>
+</section>
+<!-- ELECTRIC NAILS -->
+<section id="section-enails" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Electric Nails" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/Enail2.png?v=1764083913" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Electric Nails (E-Nails)</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Electric nails, or e-nails, use a controller and heating coil (or an all-in-one device) to keep your dab surface at a steady temperature. Instead of using a torch, you set your preferred heat and let the device maintain it for you.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> coil-and-controller kits that wrap around a compatible nail or banger, and all-in-one e-nail heads or e-rigs with built-in temperature control and displays.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> coils and control boxes in metal and heat-resistant components, nails in quartz, titanium, or ceramic depending on the style and brand.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">People who dab frequently and want consistent results without guessing.</li>
+<li style="margin: 0 0 6px 0;">Finding a personal “sweet spot” temperature and leaving it there.</li>
+<li style="margin: 0 0 6px 0;">Reducing reliance on butane torches and manual timing.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Travel or ultra-portable setups that need to be battery-only.</li>
+<li style="margin: 0 0 6px 0;">Very casual dabbers who won’t benefit from the extra investment.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> simpler e-nail setups can start around $80–$150, while more robust or brand-name controllers and heads can run $150–$300+.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0;"><strong style="color: #ffffff;">Why try an e-nail:</strong> If you’re dabbing regularly and want precise, repeatable results with less guesswork, an electric nail can make your rig feel more like a dialed-in home appliance.</p>
+<!-- NEW BUTTON --> <a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 10px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> click here to check out some products. </a>
+</div>
+</div>
+</section>
+<!-- TERP PEARLS -->
+<section id="section-terp-pearls" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Terp Pearls for Dab Rigs" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/Insert2.png?v=1764084399" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Terp Pearls for Dab Rigs</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Terp pearls are small spheres (or pills) that spin around inside your banger when you use the right carb cap and airflow. They help move concentrate and heat around, leading to smoother, more even vaporization.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Common styles:</strong> simple quartz pearls, higher-end ruby or sapphire-style pearls, and specialty shapes like capsules, pillars, or “pills” made to spin inside certain banger designs.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Materials:</strong> quartz for durability and clean performance, and premium ruby/sapphire-like materials for serious enthusiasts who want extra heat retention and style.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Users who already have a banger and carb cap setup they like.</li>
+<li style="margin: 0 0 6px 0;">Low-temp or medium-temp dabs where even vaporization really shines.</li>
+<li style="margin: 0 0 6px 0;">People who enjoy customizing the feel and motion inside their banger.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Total beginners who are still learning basic timing and temperature.</li>
+<li style="margin: 0 0 6px 0;">Anyone who tends to misplace small parts easily—they’re tiny!</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Typical price ranges:</strong> basic quartz pearls around $5–$20 per set, upgraded or branded pearls $20–$50+, especially for premium materials.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0;"><strong style="color: #ffffff;">Why try terp pearls:</strong> Once you’re comfortable with dabs, terp pearls are a fun, functional upgrade that can help your concentrates vaporize more evenly and efficiently.</p>
+<!-- NEW BUTTON --> <a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 10px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> click here to check out some products. </a>
+</div>
+</div>
+</section>
+<!-- BONG TECHNIQUES -->
+<section id="section-bong-techniques" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Bong Techniques" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/Cold2.png?v=1764084835" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Bong Techniques: Cooling Your Hits</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">As you get more comfortable with water pipes, you can start experimenting with ways to make hits cooler and smoother. Small changes in how you use your bong can noticeably change how it feels.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Ice catchers and ice:</strong> some bongs have pinched sections or “ice catchers” that hold ice cubes in the neck. As smoke passes over the ice, it cools down before it reaches your mouth, which can feel gentler on your throat.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Glycerin coils and attachments:</strong> certain mouthpieces or coils are filled with glycerin and designed to be chilled in the freezer. Glycerin doesn’t freeze solid like water, so these pieces can stay cold longer and cool the smoke without adding extra meltwater.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">Water level and temperature:</strong> adjusting how much water you use and whether it’s room temp, cool, or slightly chilled can also change the feel of your hits. Too much water can add drag, while too little may not filter enough.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Users who already like bongs but want smoother, cooler pulls.</li>
+<li style="margin: 0 0 6px 0;">People with sensitive throats who value comfort.</li>
+<li style="margin: 0 0 6px 0;">Experimenters who enjoy fine-tuning their setup.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Very minimal setups where you don’t want extra parts to chill or swap.</li>
+<li style="margin: 0 0 6px 0;">Anyone who prefers simple, room-temperature hits and easy cleanup.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0;"><strong style="color: #ffffff;">Why try advanced bong techniques:</strong> Cooling your hits with ice catchers, glycerin pieces, or tuned water levels can make your bong feel like a different piece—smoother, softer, and more tailored to what you enjoy.</p>
+</div>
+</div>
+</section>
+<!-- PERCOLATORS -->
+<section id="section-percolators" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="Percolator Types" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Nov_25_2025_08_37_46_AM.png?v=1764085075" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">Percolators: Different Ways to Filter and Diffuse</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Percolators, or “percs,” are internal structures in bongs and rigs that break your smoke or vapor into smaller bubbles. More bubbles mean more surface area, which usually means smoother, cooler hits.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Common percolator types:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">
+<strong style="color: #ffffff;">Tree percs:</strong> multiple arms that bubble up like branches, offering lots of diffusion.</li>
+<li style="margin: 0 0 6px 0;">
+<strong style="color: #ffffff;">Showerhead percs:</strong> a round disc or dome with slits around the edge, creating even, circular bubbling.</li>
+<li style="margin: 0 0 6px 0;">
+<strong style="color: #ffffff;">Honeycomb percs:</strong> flat discs full of small holes that make tons of tiny bubbles.</li>
+<li style="margin: 0 0 6px 0;">
+<strong style="color: #ffffff;">Inline percs:</strong> horizontal tubes with slits along the length, great for smooth, stable diffusion.</li>
+<li style="margin: 0 0 6px 0;">
+<strong style="color: #ffffff;">Matrix or stereo percs:</strong> complex grid-like structures that create very dense diffusion.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Best for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Users who want smoother, more refined hits and extra cooling.</li>
+<li style="margin: 0 0 6px 0;">People who enjoy watching intricate diffusion and function.</li>
+<li style="margin: 0 0 6px 0;">Finding the balance between smoothness and the amount of draw resistance you like.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Not as good for:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Those who want ultra-simple, easy-to-clean pieces with minimal internal parts.</li>
+<li style="margin: 0 0 6px 0;">Users who don’t like extra drag or resistance when they pull.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0;"><strong style="color: #ffffff;">Why learn about percs:</strong> Understanding different percolators helps you pick a bong or rig that fits your preference—whether you like airy and simple, or dense and ultra-smooth.</p>
+</div>
+</div>
+</section>
+<!-- HOW-TO: DAB USING A BANGER -->
+<section id="section-how-to-dab-banger" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="How to Dab Using a Banger on a Dab Rig" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/Banger2.png?v=1764083682" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">How to Dab Using a Banger on a Dab Rig</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Dabbing with a banger on a dab rig is all about timing, gentle heat, and staying safe around hot glass or quartz. Once you learn the basic flow, it becomes a simple, repeatable ritual.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">What you’ll need:</strong> a dab rig with a banger, a dab tool, carb cap, small amount of concentrate, and isopropyl alcohol or cleaning swabs for after your hit.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Basic steps:</strong></p>
+<ol style="margin: 0 0 16px 25px; padding-left: 4px; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Fill your rig so the water just covers the percolator slits or holes—enough to bubble, but not splash into your mouth.</li>
+<li style="margin: 0 0 6px 0;">Use your dab tool to pick up a small amount of concentrate and set the tool aside where it won’t touch anything.</li>
+<li style="margin: 0 0 6px 0;">Heat the outside and bottom of the banger evenly until it’s visibly hot (avoid pointing the flame at joints or one spot for too long).</li>
+<li style="margin: 0 0 6px 0;">Let the banger cool down for a short moment so it’s not glowing hot—this helps protect flavor and reduces harshness.</li>
+<li style="margin: 0 0 6px 0;">Gently place the concentrate into the warm banger while you inhale through the rig, keeping your pull slow and steady.</li>
+<li style="margin: 0 0 6px 0;">Place the carb cap over the banger to direct airflow and spin the vapor around, then finish your inhale.</li>
+<li style="margin: 0 0 6px 0;">Exhale, then use a cotton swab (dry or with a little isopropyl, once cool enough) to wipe out any leftover residue.</li>
+</ol>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Tips for smoother dabs:</strong></p>
+<ul style="margin: 0 0 0 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Start with very small dabs until you know your comfort level.</li>
+<li style="margin: 0 0 6px 0;">Keep your banger clean so each session tastes fresh.</li>
+<li style="margin: 0 0 6px 0;">Always handle hot glass carefully and set your rig on a stable, flat surface.</li>
+</ul>
+<!-- NEW BUTTON --> <a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 10px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> click here to check out some products. </a>
+</div>
+</div>
+</section>
+<!-- HOW-TO: TORCH -->
+<section id="section-how-to-torch" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="How to Use a Butane Torch with a Dab Rig" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/TorchUp.png?v=1764432422" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">How to Use a Butane Torch to Heat a Dab Rig</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">A butane torch makes it easy to get your banger or nail up to temperature, but it’s important to use it calmly and safely. Think of it like using a kitchen torch—controlled, focused, and never rushed.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Before you start:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Make sure your rig is on a stable, heat-resistant surface.</li>
+<li style="margin: 0 0 6px 0;">Check that your torch is filled with butane, pointed away from your face, hair, clothing, and anything flammable.</li>
+<li style="margin: 0 0 6px 0;">Know where the flame adjustment and ignition buttons are before you light it.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Heating with a torch:</strong></p>
+<ol style="margin: 0 0 16px 25px; padding-left: 4px; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Hold the torch so the flame points at the outside and bottom of the banger or nail, not directly at joints or the rig itself.</li>
+<li style="margin: 0 0 6px 0;">Move the flame in small circles or passes so you heat the surface evenly instead of roasting one spot.</li>
+<li style="margin: 0 0 6px 0;">Turn off the torch as soon as the surface is fully heated—keep it pointed away from people while you click it off.</li>
+<li style="margin: 0 0 6px 0;">Set the torch down in a safe place where it can’t roll, fall, or tip.</li>
+<li style="margin: 0 0 6px 0;">Allow the banger a little time to cool before applying concentrate so it isn’t painfully hot to inhale from.</li>
+</ol>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Safety tips:</strong></p>
+<ul style="margin: 0 0 0 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Never leave a lit torch unattended.</li>
+<li style="margin: 0 0 6px 0;">Keep torches, hot glass, and rigs out of reach of kids and pets.</li>
+<li style="margin: 0 0 6px 0;">Let all hot surfaces cool fully before you try to move or clean them.</li>
+</ul>
+<!-- NEW BUTTON --> <a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 10px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> click here to check out some products. </a>
+</div>
+</div>
+</section>
+<!-- HOW-TO: E-NAIL -->
+<section id="section-how-to-enail" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="How to Use an Electric Nail" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/EnailWoman.png?v=1764433100" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">How to Use an Electric Nail (E-Nail)</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">An electric nail replaces the torch with a controller and heating coil, keeping your dab surface at a steady temperature. Once it’s set up, the process is very consistent and beginner-friendly.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">What you’ll need:</strong> a dab rig, compatible e-nail (coil and controller or all-in-one unit), power outlet, dab tool, carb cap, and a small amount of concentrate.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Basic steps:</strong></p>
+<ol style="margin: 0 0 16px 25px; padding-left: 4px; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Attach the e-nail coil or head to the compatible banger or nail according to the manufacturer’s instructions.</li>
+<li style="margin: 0 0 6px 0;">Plug the controller into a safe power outlet and turn it on.</li>
+<li style="margin: 0 0 6px 0;">Set your desired temperature on the controller—many people start on the lower side for smoother, more flavorful hits.</li>
+<li style="margin: 0 0 6px 0;">Wait for the controller to indicate that it has reached temperature (most units have a display or light).</li>
+<li style="margin: 0 0 6px 0;">Load a small amount of concentrate onto your dab tool, then gently place it onto the heated surface while inhaling through the rig.</li>
+<li style="margin: 0 0 6px 0;">Use your carb cap to direct airflow and finish your hit, then exhale.</li>
+<li style="margin: 0 0 6px 0;">After your session, turn off and unplug the controller and allow the nail and coil to cool completely before touching or moving them.</li>
+</ol>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Good habits with e-nails:</strong></p>
+<ul style="margin: 0 0 0 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Start at lower temps and adjust slowly until you find what feels best.</li>
+<li style="margin: 0 0 6px 0;">Keep the nail clean by gently wiping out residue between hits once it cools a bit.</li>
+<li style="margin: 0 0 6px 0;">Never wrap or compress a hot coil—let it cool fully before moving or storing.</li>
+</ul>
+<!-- NEW BUTTON --> <a href="https://autobongs.com/collections/accessories" style="display: inline-block; margin-top: 10px; padding: 14px 28px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 5px; font-size: 1.1em; font-weight: 600;"> click here to check out some products. </a>
+</div>
+</div>
+</section>
+<!-- HOW-TO: BONG HIT -->
+<section id="section-how-to-bong-hit" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="How to Take a Hit on a Bong" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/BongHit.png?v=1764430312" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">How to Take a Hit on a Bong</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Taking a comfortable bong hit is about pacing yourself—steady breathing, gentle lighting, and knowing when to clear the chamber. With a little practice, it feels smooth and intuitive.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Before you light:</strong></p>
+<ul style="margin: 0 0 16px 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Fill the bong with enough water to cover the percolator slits or downstem holes.</li>
+<li style="margin: 0 0 6px 0;">Make sure the bowl is packed (but not too tight) and seated firmly in the joint.</li>
+<li style="margin: 0 0 6px 0;">Sit or stand somewhere stable so you can hold the bong securely.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Taking the hit:</strong></p>
+<ol style="margin: 0 0 16px 25px; padding-left: 4px; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Place your mouth inside the mouthpiece, forming a gentle seal with your lips.</li>
+<li style="margin: 0 0 6px 0;">As you start a slow inhale, bring the lighter to the edge of the bowl—try to light just a small corner at a time.</li>
+<li style="margin: 0 0 6px 0;">Keep your inhale steady so the chamber fills with thick but manageable smoke, not all at once.</li>
+<li style="margin: 0 0 6px 0;">When there’s enough smoke in the chamber, stop lighting and remove the bowl or release the carb (if your piece has one).</li>
+<li style="margin: 0 0 6px 0;">Inhale the smoke from the chamber in a smooth, controlled breath to “clear” the bong.</li>
+<li style="margin: 0 0 6px 0;">Exhale comfortably and give yourself a moment before deciding whether you want another hit.</li>
+</ol>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Comfort tips:</strong></p>
+<ul style="margin: 0 0 0 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Start with small hits until you know how strong your bong and material are.</li>
+<li style="margin: 0 0 6px 0;">Use cooler water or ice (if your piece supports it) if your throat is sensitive.</li>
+<li style="margin: 0 0 6px 0;">Clean your bong regularly so hits stay smooth and taste fresh.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- HOW-TO: PACK A BOWL -->
+<section id="section-how-to-pack-bowl" style="max-width: 1200px; margin: 0 auto 30px auto; padding: 20px 0;">
+<div class="product-box" style="display: flex; flex-direction: column; align-items: stretch; gap: 20px; border: 2px solid #444444; border-radius: 15px; padding: 24px; margin: 0 auto; max-width: 1200px; background-color: #2a2a2a; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+<img alt="How to Pack a Bowl" src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/BowlPack.png?v=1764430488" style="flex: 0 0 auto; width: 100%; max-width: 55%; height: auto; border-radius: 15px; object-fit: contain; display: block; margin: 0 auto;">
+<div class="product-content" style="flex: 1; text-align: left;">
+<h3 style="font-size: 1.8em; color: #ffffff; margin: 0 0 15px 0;">How to Pack a Bowl</h3>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;">Packing a bowl well helps your herb burn evenly, pull smoothly, and taste better. You don’t need to overthink it—just aim for a balance between airflow and support.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 16px 0;"><strong style="color: #ffffff;">What you’ll need:</strong> ground dry herb, a pipe or bong bowl, and optionally a small screen if your piece uses one.</p>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Basic steps:</strong></p>
+<ol style="margin: 0 0 16px 25px; padding-left: 4px; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">Grind your herb so it’s broken up but not powdered—small, fluffy pieces work best.</li>
+<li style="margin: 0 0 6px 0;">If your bowl uses a screen, place it flat at the bottom of the bowl.</li>
+<li style="margin: 0 0 6px 0;">Sprinkle a small pinch of herb into the bottom and gently tap it down so it forms a light base.</li>
+<li style="margin: 0 0 6px 0;">Add another layer or two, pressing only lightly—enough to hold together but not so tight that air can’t pass through.</li>
+<li style="margin: 0 0 6px 0;">Check airflow by taking a test pull without lighting. If it feels clogged, gently loosen the top layer with your fingers or tool.</li>
+<li style="margin: 0 0 6px 0;">Once it feels right, you’re ready to light a corner and start your session.</li>
+</ol>
+<p style="font-size: 1.05em; line-height: 1.7; color: #e0e0e0; margin: 0 0 10px 0;"><strong style="color: #ffffff;">Packing tips:</strong></p>
+<ul style="margin: 0 0 0 25px; padding: 0; font-size: 1.05em; line-height: 1.7; color: #e0e0e0;">
+<li style="margin: 0 0 6px 0;">For solo sessions, use smaller bowls or partial packs to keep things fresh.</li>
+<li style="margin: 0 0 6px 0;">For sharing, a slightly fuller bowl can work as long as it still pulls easily.</li>
+<li style="margin: 0 0 6px 0;">Avoid grinding too fine, which can clog screens and reduce airflow.</li>
+</ul>
+</div>
+</div>
+</section>
 
-<header id="section-top">
-  <h1>Beginner's Guide to Our Products &amp; Features</h1>
-  <p class="intro">Welcome to Autobongs! If you're new to smoke shop products the variety can feel overwhelming. We're
-    here to make it easy and straightforward.</p>
-  <p class="intro" style="text-align: center;"><img alt=""
-      src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_44_25_PM.png?v=1761162274">
-  </p>
-</header>
-
-<div class="guide-wrapper">
-
-  <p style="text-align: center; font-size: 1.1em; color: #aaa; margin-bottom: 40px;">Consumption materials come in two
-    main forms: <strong>dried herbs</strong> (dried plant material) and <strong>concentrated herbs</strong> (purified
-    extracts like oils or waxes, concentrated versions of the dried form). Each works with different devices designed
-    specifically for that material type.</p>
-
-  <section id="section-bongs">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_09_07_02_AM.png?v=1761145660"
-        alt="Bong Water Pipe">
-      <div class="product-content">
-        <h3>Bongs (Water Pipes)</h3>
-        <p>Water pipes use water filtration to cool and filter smoke before you inhale, creating a smoother
-          experience that's easier on your throat and lungs.</p>
-        <a href="https://autobongs.com/collections/bongs" class="cta-button">Explore our bongs</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-bubblers">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_09_10_46_AM.png?v=1761145859"
-        alt="Bubbler">
-      <div class="product-content">
-        <h3>Bubblers (Compact Water Pipes)</h3>
-        <p>Bubblers provide the same water-filtered smoothness as traditional bongs but in a portable, handheld
-          size. These compact water pipes are easy to use anywhere and offer excellent portability without
-          sacrificing filtration quality.</p>
-        <a href="https://autobongs.com/collections/bubblers" class="cta-button">Browse our bubbler collection</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-hand-pipes">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_09_16_04_AM.png?v=1761146174"
-        alt="Hand Pipe">
-      <div class="product-content">
-        <h3>Hand Pipes</h3>
-        <p>Hand pipes are the simplest smoking option available. These small, portable devices require no water or
-          complicated setup. Perfect for beginners and experienced users alike.</p>
-        <a href="https://autobongs.com/collections/pipes" class="cta-button">View our hand pipe selection</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="section-dry-herb-vapes">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_04_32_PM.png?v=1761159929"
-        alt="Dry Herb Vaporizer">
-      <div class="product-content">
-        <h3>Dry Herb Vaporizers</h3>
-        <p>Flower vaporizers heat dried herbs to release active ingredients as vapor without combustion. This
-          produces less smoke, less odor, and is easier on your respiratory system compared to traditional smoking
-          methods. Available in portable and desktop models.</p>
-        <a href="https://autobongs.com/collections/dry-herb-vaporizers" class="cta-button">See our dry herb vaporizer
-          collection</a>
-      </div>
-    </div>
-  </section>
-
-
-  <h2>Concentrate Smoking Devices</h2>
-  <p style="text-align: center; color: #aaa; margin-bottom: 30px;">These specialized devices are designed for oils,
-    waxes,
-    and other concentrated extracts.</p>
-  <section id="section-dab-rigs">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_07_20_PM.png?v=1761160206"
-        alt="Dab Rig">
-      <div class="product-content">
-        <h3>Dab Rigs (Concentrate Water Pipes)</h3>
-        <p>Dab rigs are water pipes specifically designed for concentrated products. Since concentrates are more
-          potent than flower, you typically need only one or two inhalations per session. Dab rigs are available
-          in traditional styles (torch-heated), electric models (battery-powered), or convertible designs that
-          work with both materials.</p>
-        <a href="https://autobongs.com/collections/dab-rigs" class="cta-button">Shop our dab rig collection</a>
-      </div>
-    </div>
-  </section>
-  <section id="section-concentrate-vapes">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_13_18_PM.png?v=1761160408"
-        alt="Concentrate Vaporizer">
-      <div class="product-content">
-        <h3>Concentrate Vaporizers</h3>
-        <p>These portable devices heat concentrates quickly and discreetly, producing minimal odor. Concentrate
-          vaporizers are convenient for both home and travel use, offering precise temperature control and
-          efficient consumption.</p>
-        <a href="https://autobongs.com/collections/concentrated-herb-vaporizers" class="cta-button">Check out
-          concentrate vaporizers</a>
-      </div>
-    </div>
-  </section>
-
-
-  <h2>Essential Smoking Accessories</h2>
-  <p style="text-align: center; color: #aaa; margin-bottom: 30px;">The right accessories enhance your experience and
-    keep
-    your devices functioning properly.</p>
-  <section id="section-dry-herb-accessories">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_32_22_PM.png?v=1761161561"
-        alt="Dry Herb Accessories">
-      <div class="product-content">
-        <h3>Accessories for Dry Herb Devices</h3>
-        <p><strong>Herb Grinders</strong> prepare your material for optimal use, ensuring even burning and better
-          airflow. <strong>Replacement bowls, downstems, and screens</strong> keep everything functioning
-          smoothly. <strong>Ash catchers</strong> help maintain a cleaner setup between sessions and reduce
-          cleaning frequency. <strong>Rolling trays</strong> provide a clean, organized workspace for preparation.
-        </p>
-        <a href="https://autobongs.com/collections/accessories" class="cta-button">Check out Dry Herb Accessories</a>
-      </div>
-    </div>
-  </section>
-  <section id="section-concentrate-accessories">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_35_27_PM.png?v=1761161737"
-        alt="Concentrate Accessories">
-      <div class="product-content">
-        <h3>Accessories for Concentrate Devices</h3>
-        <p><strong>Carb caps, bangers, and quartz inserts</strong> are essential components for optimal dab rig
-          performance. <strong>Terp pearls</strong> enhance vapor quality and distribution, ensuring you get the
-          most from your concentrates. <strong>Dab tools</strong> help you handle sticky materials safely and
-          precisely.</p>
-        <a href="https://autobongs.com/collections/accessories" class="cta-button">Check out Concentrated Herb
-          Accessories</a>
-      </div>
-    </div>
-  </section>
-  <section id="section-universal-accessories">
-    <div class="product-box">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_37_38_PM.png?v=1761161867"
-        alt="Universal Accessories">
-      <div class="product-content">
-        <h3>Universal Accessories</h3>
-        <p><strong>Protective cases</strong> safeguard your equipment during storage and travel, preventing damage
-          and keeping everything organized. <strong>Cleaning supplies</strong> (including solutions, brushes, and
-          cleaning tools) keep all devices working their best and extend product lifespan. <strong>Replacement
-            batteries</strong> ensure your electric devices and vaporizers stay powered when you need them.</p>
-        <a href="https://autobongs.com/collections/accessories" class="cta-button">Shop Universal Accessories</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- LEVELING UP SECTION
-
-<h2 id="section-leveling-up"> Leveling Up</h2>
-<p style="text-align: center; color: #aaa; margin-bottom: 30px; font-size: 1.1em;">Ready to take your experience to the next level? Explore more advanced gear and techniques.</p>
- -->
+<!--insert new code here-->
   <!-- ADVANCING USER BANNER -->
   <section id="section-advancing-banner">
     <div class="product-box banner-box">
@@ -1106,73 +1237,32 @@
 
 </div>
 <!-- END GUIDE WRAPPER -->
+<!-- FOOTER TEXT --><footer id="section-chat-footer" style="max-width: 1200px; margin: 0 auto 20px auto; padding: 20px 0; color: #e0e0e0; font-size: 1.05em; line-height: 1.7; text-align: left;">
+<p style="margin: 0 0 15px 0;">Do You Have Any More Questions? Would You Like to Be Guided to Your Own Narrowed-Down Collection of Products Based on Your Style and Needs? Check out our Curation Tool and Chat Assistant!</p>
+<p style="margin: 0 0 15px 0;">The Curation Tool will take you through our products and ask you an extensive series of questions to determine what you'll love the most out of everything we have. Throughout the process you will learn about everything you're being shown, you could be brand new to this scene and end up with a basic education in these products by the end of it. This helps tremendously when dealing with such a vast variety of products that have specific functions and applications.</p>
+<p style="margin: 0;">Our Chat Assistant is trained and programmed by industry professionals to be the best product specialist and customer service agent you could hope for in a smoke shop. Get product recommendations, ask questions, learn everything you need to know until you feel confident about your purchase.</p>
+</footer><!-- FOOTER CHAT BUTTON --><footer style="max-width: 1200px; margin: 0 auto 10px auto; padding: 10px 0; text-align: center;">
+<div class="chat-button-container" style="text-align: center;"><a class="chat-button" href="https://autobongs.com/pages/chat-assistant" style="display: inline-block; padding: 16px 32px; background-color: #ffffff; color: #1a1a1a; text-decoration: none; border-radius: 50px; font-size: 1.25em; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.2); text-align: center;"> Ask our product specialist Chat Assistant </a></div>
+</footer><!-- COLLAPSIBLE MENU SCRIPT --> <script>
+    (function () {
+      var toggle = document.getElementById('autobongs-menu-toggle');
+      var links = document.getElementById('autobongs-menu-links');
+      if (!toggle || !links) return;
 
-<footer id="section-chat-footer">
-  <p>Do You Have Any More Questions? Would You Like to Be Guided to Your Own Narrowed-Down Collection of Products
-    Based on Your Style and Needs? Check out our Curation Tool and Chat Assistant!</p>
-  <p>The Curation Tool will take you through our products and ask you an extensive series of questions to determine
-    what you'll love the most out of everything we have. Throughout the process you will learn about everything
-    you're being shown, you could be brand new to this scene and end up with a basic education in these products by
-    the end of it. This helps tremendously when dealing with such a vast variety of products that have specific
-    functions and applications.</p>
-  <p>Our Chat Assistant is trained and programmed by industry professionals to be the best product specialist and
-    customer service agent you could hope for in a smoke shop. Get product recommendations, ask questions, learn
-    everything you need to know until you feel confident about your purchase.</p>
-  <a href="https://autobongs.com/pages/chat-assistant" class="cta-button">Ask our product specialist chatbot</a>
-</footer>
+      // Start collapsed
+      toggle.setAttribute('data-open', 'false');
+      links.style.display = 'none';
 
-<!-- COLLAPSIBLE MENU SCRIPT -->
-<script>
-  (function () {
-    var toggle = document.getElementById('autobongs-menu-toggle');
-    var links = document.getElementById('autobongs-menu-links');
-    if (!toggle || !links) return;
-
-    // Start collapsed
-    toggle.setAttribute('data-open', 'false');
-    links.style.display = 'none';
-
-    toggle.addEventListener('click', function () {
-      var isOpen = toggle.getAttribute('data-open') === 'true';
-      if (isOpen) {
-        links.style.display = 'none';
-        toggle.setAttribute('data-open', 'false');
-        toggle.innerHTML = '☰ Jump to Section';
-      } else {
-        links.style.display = 'flex';
-        toggle.setAttribute('data-open', 'true');
-        toggle.innerHTML = '✕ Close Menu';
-      }
-    });
-
-    // Add hover effects to all menu links
-    var menuLinks = links.querySelectorAll('a');
-    menuLinks.forEach(function (link) {
-      link.addEventListener('mouseenter', function () {
-        this.style.backgroundColor = '#3a3a3a';
-      });
-      link.addEventListener('mouseleave', function () {
-        this.style.backgroundColor = '#262626';
-      });
-      // Close menu on link click (mobile UX improvement)
-      link.addEventListener('click', function () {
-        if (window.innerWidth < 768) {
+      toggle.addEventListener('click', function () {
+        var isOpen = toggle.getAttribute('data-open') === 'true';
+        if (isOpen) {
           links.style.display = 'none';
           toggle.setAttribute('data-open', 'false');
-          toggle.innerHTML = '☰ Jump to Section';
+        } else {
+          links.style.display = 'flex';
+          toggle.setAttribute('data-open', 'true');
         }
       });
-    });
-
-    // Toggle button hover
-    toggle.addEventListener('mouseenter', function () {
-      this.style.backgroundColor = '#2a2a2a';
-    });
-    toggle.addEventListener('mouseleave', function () {
-      this.style.backgroundColor = '#1f1f1f';
-    });
-  })();
-</script>
-
-</body>
-</html>
+    })();
+  </script>
+</div>
