@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+
+<style>
+  /* Dark Mode Base */
+  body,
+  html {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+
+  /* Image styling */
+  header img {
+    width: 50%;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .product-box img {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 55%;
+    height: auto;
+    border-radius: 15px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Base section styling */
+  header,
+  footer {
+    text-align: center;
+    background-color: #1a1a1a;
+  }
+
+  section {
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+    padding: 20px 0;
+    background-color: #1a1a1a;
+  }
+
+  header {
+    padding: 30px 20px;
+  }
+
+  footer {
+    padding: 40px 20px;
+    background-color: #151515;
+    border-top: 1px solid #333;
+  }
+
+  /* Product Box Styling */
+  .product-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    border: 2px solid #444444;
+    border-radius: 15px;
+    padding: 24px;
+    margin: 0 auto;
+    max-width: 1200px;
+    background-color: #2a2a2a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .product-box.banner-box {
+    border: 2px solid #4a9eff;
+    box-shadow: 0 2px 12px rgba(74, 158, 255, 0.15);
+    max-width: 900px;
+  }
+
+  .product-content {
+    flex: 1;
+    text-align: left;
+  }
+
+  /* Typography */
+  p.intro {
+    font-size: 1.2em;
+    color: #aaaaaa;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #e0e0e0;
+    margin: 0 0 16px 0;
+  }
+
+  h1 {
+    color: #ffffff;
+  }
+
+  h2 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 2em;
+    margin: 40px 0 20px 0;
+  }
+
+  h3 {
+    font-size: 1.8em;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+  }
+
+  a {
+    color: #4a9eff;
+  }
+
+  a:hover {
+    color: #7db8ff;
+  }
+
+  strong {
+    color: #ffffff;
+  }
+
+  ul {
+    margin: 0 0 16px 25px;
+    padding: 0;
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #e0e0e0;
+  }
+
+  li {
+    margin: 0 0 6px 0;
+  }
+
+  ol {
+    margin: 0;
+    padding-left: 25px;
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: #e0e0e0;
+  }
+
+  /* CTA Button */
+  .cta-button {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 14px 28px;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+
+  .cta-button:hover {
+    background-color: #e0e0e0;
+    color: #1a1a1a;
+  }
+
+  /* Jump Menu Styling - Dark */
+  #autobongs-jump-menu {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(26, 26, 26, 0.98);
+    padding: 10px 10px 12px 10px;
+    border-bottom: 1px solid #333333;
+  }
+
+  #autobongs-menu-toggle {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto 8px auto;
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid #555555;
+    background-color: #1f1f1f;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  #autobongs-menu-toggle:hover {
+    background-color: #2a2a2a;
+  }
+
+  #autobongs-menu-links {
+    display: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  #autobongs-menu-links a {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    border: 1px solid #555555;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #262626;
+    transition: background-color 0.2s ease;
+  }
+
+  #autobongs-menu-links a:hover {
+    background-color: #3a3a3a;
+  }
+
+  .menu-divider {
+    width: 100%;
+    text-align: center;
+    font-size: 0.65rem;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 8px 0 4px 0;
+  }
+
+  /* Section wrapper */
+  .guide-wrapper {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    padding: 20px 10px;
+  }
+  /* Image styling – medium & responsive */
+header img,
+.product-box img {
+  flex: 0 0 auto;
+  width: 100% !important;        /* fills the container on small screens */
+  max-width: 420px !important;   /* keeps images medium size on desktop */
+  height: auto;
+  border-radius: 15px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+</style>
+
+<!-- STICKY JUMP MENU (COLLAPSIBLE) -->
+<div id="autobongs-jump-menu">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <!-- Toggle button -->
+    <button id="autobongs-menu-toggle" type="button">
+      ☰ Jump to Section
+    </button>
+
+    <!-- Links wrapper (collapsed by default) -->
+    <div id="autobongs-menu-links">
+
+      <!-- Intro / Top -->
+      <a href="#section-top">Top</a>
+
+      <!-- Section Divider: Core Devices -->
+      <span class="menu-divider">— Core Devices —</span>
+
+      <a href="#section-bongs">Bongs</a>
+      <a href="#section-bubblers">Bubblers</a>
+      <a href="#section-hand-pipes">Hand Pipes</a>
+      <a href="#section-dry-herb-vapes">Dry Herb Vaporizers</a>
+
+      <!-- Section Divider: Concentrates -->
+      <span class="menu-divider">— Concentrates —</span>
+
+      <a href="#section-dab-rigs">Dab Rigs</a>
+      <a href="#section-concentrate-vapes">Concentrate Vaporizers</a>
+
+      <!-- Section Divider: Accessories -->
+      <span class="menu-divider">— Accessories —</span>
+
+      <a href="#section-dry-herb-accessories">Dry Herb Accessories</a>
+      <a href="#section-concentrate-accessories">Concentrate Accessories</a>
+      <a href="#section-universal-accessories">Universal Accessories</a>
+
+      <!-- Section Divider: Leveling Up -->
+      <span class="menu-divider">— Leveling Up —</span>
+
+      <a href="#section-advancing-banner">Advancing Overview</a>
+      <a href="#section-electric-wax-vapes">Dab Pens</a>
+      <a href="#section-510-cartridge-vapes">510 Carts</a>
+      <a href="#section-portable-dry-herb-vapes">Portable Herb Vapes</a>
+      <a href="#section-bag-vaporizers">Bag Vaporizers</a>
+
+      <!-- Section Divider: Dry Herb Guide -->
+      <span class="menu-divider">— Dry Herb Guide —</span>
+
+      <a href="#section-storage">Storage Accessories</a>
+      <a href="#section-grinders">Grinders &amp; Mills</a>
+
+      <!-- Section Divider: Concentrates Guide -->
+      <span class="menu-divider">— Concentrates Guide —</span>
+
+      <a href="#section-concentrate-temps">Temperature Guide</a>
+      <a href="#section-perc-recycler">Percolation &amp; Recyclers</a>
+
+      <!-- Help -->
+      <span class="menu-divider">— Help —</span>
+      <a href="#section-chat-footer">Chat Assistant</a>
+    </div>
+  </div>
+</div>
+
+<header id="section-top">
+  <h1>Beginner's Guide to Our Products &amp; Features</h1>
+  <p class="intro">Welcome to Autobongs! If you're new to smoke shop products the variety can feel overwhelming. We're
+    here to make it easy and straightforward.</p>
+  <p class="intro" style="text-align: center;"><img alt=""
+      src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_44_25_PM.png?v=1761162274">
+  </p>
+</header>
+
+<div class="guide-wrapper">
+
+  <p style="text-align: center; font-size: 1.1em; color: #aaa; margin-bottom: 40px;">Consumption materials come in two
+    main forms: <strong>dried herbs</strong> (dried plant material) and <strong>concentrated herbs</strong> (purified
+    extracts like oils or waxes, concentrated versions of the dried form). Each works with different devices designed
+    specifically for that material type.</p>
+
+  <section id="section-bongs">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_09_07_02_AM.png?v=1761145660"
+        alt="Bong Water Pipe">
+      <div class="product-content">
+        <h3>Bongs (Water Pipes)</h3>
+        <p>Water pipes use water filtration to cool and filter smoke before you inhale, creating a smoother
+          experience that's easier on your throat and lungs.</p>
+        <a href="https://autobongs.com/collections/bongs" class="cta-button">Explore our bongs</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-bubblers">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_09_10_46_AM.png?v=1761145859"
+        alt="Bubbler">
+      <div class="product-content">
+        <h3>Bubblers (Compact Water Pipes)</h3>
+        <p>Bubblers provide the same water-filtered smoothness as traditional bongs but in a portable, handheld
+          size. These compact water pipes are easy to use anywhere and offer excellent portability without
+          sacrificing filtration quality.</p>
+        <a href="https://autobongs.com/collections/bubblers" class="cta-button">Browse our bubbler collection</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-hand-pipes">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_09_16_04_AM.png?v=1761146174"
+        alt="Hand Pipe">
+      <div class="product-content">
+        <h3>Hand Pipes</h3>
+        <p>Hand pipes are the simplest smoking option available. These small, portable devices require no water or
+          complicated setup. Perfect for beginners and experienced users alike.</p>
+        <a href="https://autobongs.com/collections/pipes" class="cta-button">View our hand pipe selection</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-dry-herb-vapes">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_04_32_PM.png?v=1761159929"
+        alt="Dry Herb Vaporizer">
+      <div class="product-content">
+        <h3>Dry Herb Vaporizers</h3>
+        <p>Flower vaporizers heat dried herbs to release active ingredients as vapor without combustion. This
+          produces less smoke, less odor, and is easier on your respiratory system compared to traditional smoking
+          methods. Available in portable and desktop models.</p>
+        <a href="https://autobongs.com/collections/dry-herb-vaporizers" class="cta-button">See our dry herb vaporizer
+          collection</a>
+      </div>
+    </div>
+  </section>
+
+
+  <h2>Concentrate Smoking Devices</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 30px;">These specialized devices are designed for oils,
+    waxes,
+    and other concentrated extracts.</p>
+  <section id="section-dab-rigs">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_07_20_PM.png?v=1761160206"
+        alt="Dab Rig">
+      <div class="product-content">
+        <h3>Dab Rigs (Concentrate Water Pipes)</h3>
+        <p>Dab rigs are water pipes specifically designed for concentrated products. Since concentrates are more
+          potent than flower, you typically need only one or two inhalations per session. Dab rigs are available
+          in traditional styles (torch-heated), electric models (battery-powered), or convertible designs that
+          work with both materials.</p>
+        <a href="https://autobongs.com/collections/dab-rigs" class="cta-button">Shop our dab rig collection</a>
+      </div>
+    </div>
+  </section>
+  <section id="section-concentrate-vapes">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_13_18_PM.png?v=1761160408"
+        alt="Concentrate Vaporizer">
+      <div class="product-content">
+        <h3>Concentrate Vaporizers</h3>
+        <p>These portable devices heat concentrates quickly and discreetly, producing minimal odor. Concentrate
+          vaporizers are convenient for both home and travel use, offering precise temperature control and
+          efficient consumption.</p>
+        <a href="https://autobongs.com/collections/concentrated-herb-vaporizers" class="cta-button">Check out
+          concentrate vaporizers</a>
+      </div>
+    </div>
+  </section>
+
+
+  <h2>Essential Smoking Accessories</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 30px;">The right accessories enhance your experience and
+    keep
+    your devices functioning properly.</p>
+  <section id="section-dry-herb-accessories">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_32_22_PM.png?v=1761161561"
+        alt="Dry Herb Accessories">
+      <div class="product-content">
+        <h3>Accessories for Dry Herb Devices</h3>
+        <p><strong>Herb Grinders</strong> prepare your material for optimal use, ensuring even burning and better
+          airflow. <strong>Replacement bowls, downstems, and screens</strong> keep everything functioning
+          smoothly. <strong>Ash catchers</strong> help maintain a cleaner setup between sessions and reduce
+          cleaning frequency. <strong>Rolling trays</strong> provide a clean, organized workspace for preparation.
+        </p>
+        <a href="https://autobongs.com/collections/accessories" class="cta-button">Check out Dry Herb Accessories</a>
+      </div>
+    </div>
+  </section>
+  <section id="section-concentrate-accessories">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_35_27_PM.png?v=1761161737"
+        alt="Concentrate Accessories">
+      <div class="product-content">
+        <h3>Accessories for Concentrate Devices</h3>
+        <p><strong>Carb caps, bangers, and quartz inserts</strong> are essential components for optimal dab rig
+          performance. <strong>Terp pearls</strong> enhance vapor quality and distribution, ensuring you get the
+          most from your concentrates. <strong>Dab tools</strong> help you handle sticky materials safely and
+          precisely.</p>
+        <a href="https://autobongs.com/collections/accessories" class="cta-button">Check out Concentrated Herb
+          Accessories</a>
+      </div>
+    </div>
+  </section>
+  <section id="section-universal-accessories">
+    <div class="product-box">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Oct_22_2025_01_37_38_PM.png?v=1761161867"
+        alt="Universal Accessories">
+      <div class="product-content">
+        <h3>Universal Accessories</h3>
+        <p><strong>Protective cases</strong> safeguard your equipment during storage and travel, preventing damage
+          and keeping everything organized. <strong>Cleaning supplies</strong> (including solutions, brushes, and
+          cleaning tools) keep all devices working their best and extend product lifespan. <strong>Replacement
+            batteries</strong> ensure your electric devices and vaporizers stay powered when you need them.</p>
+        <a href="https://autobongs.com/collections/accessories" class="cta-button">Shop Universal Accessories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEVELING UP SECTION
+
+<h2 id="section-leveling-up"> Leveling Up</h2>
+<p style="text-align: center; color: #aaa; margin-bottom: 30px; font-size: 1.1em;">Ready to take your experience to the next level? Explore more advanced gear and techniques.</p>
+ -->
+  <!-- ADVANCING USER BANNER -->
+  <section id="section-advancing-banner">
+    <div class="product-box banner-box">
+      <div class="product-content" style="text-align:center;">
+        <h3> Ready to level up? Here's what's next.</h3>
+        <p>
+          You've got the basics down—now it's time to explore gear that takes your sessions to the next level.
+          These tools offer better control, smoother hits, and a more personalized experience as you grow.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELECTRIC PORTABLE WAX VAPES (DAB PENS) -->
+  <section id="section-electric-wax-vapes">
+    <div class="product-box">
+      <img alt="Electric Portable Wax Vape Dab Pen"
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Dec_1_2025_05_21_27_PM.png?v=1764635121">
+      <div class="product-content">
+        <h3>Electric Portable Wax Vapes (Dab Pens)</h3>
+
+        <p>Electric portable wax vapes (often called dab pens) are small battery-powered devices made for cannabis
+          concentrates like wax, shatter, badder, or rosin. They heat a tiny "atomizer" instead of an open flame, so you
+          get quick, potent hits with less smell and more control.</p>
+
+        <p><strong>Key Features:</strong></p>
+        <ul>
+          <li>Pocket-sized and discreet for on-the-go use.</li>
+          <li>Button or draw-activated firing, often with multiple heat settings.</li>
+          <li>Removable or replaceable atomizers for different concentrate textures.</li>
+          <li>USB-C or micro-USB charging, sometimes pass-through (hit while charging).</li>
+          <li>Some models include preheat modes to melt thick concentrates evenly.</li>
+        </ul>
+
+        <p><strong>Atomizers &amp; Heating Styles:</strong></p>
+        <ul>
+          <li><strong>Quartz rod coils:</strong> Heat up fast and hit hard; great for bigger, punchy rips but can be
+            harsher.</li>
+          <li><strong>Ceramic donut or bucket:</strong> Slower heat, smoother flavor, more even vaporization.</li>
+          <li><strong>Coil-less cups:</strong> Easy to load and clean, good flavor and easier maintenance.</li>
+          <li><strong>Top vs. bottom airflow designs:</strong> Impacts draw resistance and how leak-resistant the pen
+            is.</li>
+        </ul>
+
+        <p><strong>Best for:</strong></p>
+        <ul>
+          <li>Concentrate users who want quick, easy dabs with minimal setup.</li>
+          <li>People who want to avoid a torch but still like wax, rosin, or shatter.</li>
+          <li>Travel and discretion—fits in a pocket, purse, or bag.</li>
+        </ul>
+
+        <p><strong>Not as good for:</strong></p>
+        <ul>
+          <li>Atomizers eventually burn out and need replacement.</li>
+          <li>Can get sticky and clogged if not cleaned regularly.</li>
+          <li>Flavor and power usually not as strong as a full-sized dab rig.</li>
+          <li>Battery life can be limiting for heavy users or long outings.</li>
+        </ul>
+
+        <p><strong>Typical price ranges:</strong> Budget pens around $25–$60, mid-range options $60–$120, and premium
+          portable e-rigs $120+.</p>
+
+        <a href="https://autobongs.com/collections/concentrated-herb-vaporizers" class="cta-button">Explore Dab Pens</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 510 CARTRIDGE BATTERY VAPES -->
+  <section id="section-510-cartridge-vapes">
+    <div class="product-box">
+      <img alt="510 Cartridge Battery Vape"
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Dec_1_2025_05_24_47_PM.png?v=1764635121">
+      <div class="product-content">
+        <h3>510 Cartridge Battery Vapes</h3>
+
+        <p>510 cartridge vapes use pre-filled or refillable oil cartridges that screw into a small battery with "510"
+          threads. They're one of the easiest and most discreet ways to consume cannabis.</p>
+
+        <p><strong>Key Features:</strong></p>
+        <ul>
+          <li>Standard 510 threading compatible with most carts on the market.</li>
+          <li>Auto-draw (inhale to activate) or button-activated options.</li>
+          <li>Variable voltage or simple "low / medium / high" power settings.</li>
+          <li>Compact pen-style, key fob, or box-style bodies for stealth.</li>
+          <li>Rechargeable batteries—many use USB-C or magnetic chargers.</li>
+        </ul>
+
+        <p><strong>Cart Types:</strong></p>
+        <ul>
+          <li><strong>Ceramic core carts:</strong> Smooth flavor, even heating, popular for distillate and live resin.
+          </li>
+          <li><strong>Cotton wick carts:</strong> Older style, can have muted flavor and burn faster at high voltage.
+          </li>
+          <li><strong>Quartz or mesh elements:</strong> Faster heating and stronger hits in some premium carts.</li>
+          <li><strong>Half-gram vs full-gram:</strong> Size of the cartridge; affects weight and how long it lasts.</li>
+        </ul>
+
+        <p><strong>Best for:</strong></p>
+        <ul>
+          <li>Beginners who want a low-effort way to try cannabis.</li>
+          <li>People who prioritize discretion and convenience.</li>
+          <li>Quick hits on the go, errands, or travel (where legal).</li>
+        </ul>
+
+        <p><strong>Not as good for:</strong></p>
+        <ul>
+          <li>Quality depends heavily on the cartridge, not just the battery.</li>
+          <li>Carts can clog or leak, especially in hot or cold weather.</li>
+          <li>Not ideal if you love the ritual and flavor of flower or full dabs.</li>
+        </ul>
+
+        <p><strong>Typical price ranges:</strong> Batteries around $15–$50, premium variable-voltage options $50–$100.
+        </p>
+
+        <a href="https://autobongs.com/collections/concentrated-herb-vaporizers" class="cta-button">Browse 510
+          Batteries</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTABLE DRY HERB VAPORIZERS (ADVANCING) -->
+  <section id="section-portable-dry-herb-vapes">
+    <div class="product-box">
+      <img alt="Portable Dry Herb Vaporizer"
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/vape4.png?v=1764730227">
+      <div class="product-content">
+        <h3>Portable Dry Herb Vaporizers</h3>
+
+        <p>Portable dry herb vaporizers are compact devices that heat cannabis flower without burning it. Instead of
+          smoke, you inhale vapor made from cannabinoids and terpenes, which many people find smoother and more
+          flavorful.</p>
+
+        <p><strong>Key Features:</strong></p>
+        <ul>
+          <li><strong>Heating style:</strong> Conduction, convection, or hybrid systems.</li>
+          <li>Precise temperature control (single temp, presets, or full degree-by-degree control).</li>
+          <li>Rechargeable batteries—some removable, some built-in.</li>
+          <li>Different bowl sizes and dosing capsule systems for pre-packed sessions.</li>
+          <li>Mouthpiece materials like glass, silicone, or plastic for different feel and cooling.</li>
+        </ul>
+
+        <p><strong>Heating Chambers:</strong></p>
+        <ul>
+          <li><strong>Conduction ovens:</strong> Heat the herb by direct contact with hot metal or ceramic; faster but
+            can cook unevenly.</li>
+          <li><strong>Convection ovens:</strong> Use hot air to vaporize herb; more even extraction and flavor but often
+            slower to heat.</li>
+          <li><strong>Hybrid systems:</strong> Mix convection and conduction for a balance of speed and flavor.</li>
+        </ul>
+
+        <p><strong>Best for:</strong></p>
+        <ul>
+          <li>People who love flower but want something gentler than smoke.</li>
+          <li>Those who want to taste their strains more clearly.</li>
+          <li>Home and travel use when you want control over temperature and effects.</li>
+        </ul>
+
+        <p><strong>Not as good for:</strong></p>
+        <ul>
+          <li>Higher upfront cost compared to a basic pipe or bong.</li>
+          <li>Needs regular cleaning to keep flavor and airflow good.</li>
+          <li>Clouds can be lighter than combustion if you prefer very heavy hits.</li>
+        </ul>
+
+        <p><strong>Typical price ranges:</strong> Budget vaporizers $40–$100, mid-range with better temp control
+          $100–$250, premium portables $250+.</p>
+
+        <a href="https://autobongs.com/collections/dry-herb-vaporizers" class="cta-button">Shop Portable Vaporizers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAG VAPORIZERS (DESKTOP BALLOON VAPES) -->
+  <section id="section-bag-vaporizers">
+    <div class="product-box">
+      <img alt="Desktop Bag Vaporizer Balloon Vape"
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/bagvape1.png?v=1764730640">
+      <div class="product-content">
+        <h3>Bag Vaporizers (Desktop Balloon Vapes)</h3>
+
+        <p>Bag vaporizers are desktop units that fill a balloon or bag with vapor. They're usually plug-in devices with
+          powerful convection heaters and are designed for at-home sessions and sharing with friends.</p>
+
+        <p><strong>Key Features:</strong></p>
+        <ul>
+          <li>Large, stable base that plugs into the wall (no batteries needed).</li>
+          <li>Powerful convection heating for consistent vapor production.</li>
+          <li>Adjustable temperature controls and often a digital display.</li>
+          <li>Fans that blow vapor into detachable bags/balloons with mouthpieces.</li>
+          <li>Some models offer both bag and whip (hose) options.</li>
+        </ul>
+
+        <p><strong>Heating System:</strong></p>
+        <ul>
+          <li><strong>Large convection heaters:</strong> Hot air passes through a bowl of ground herb.</li>
+          <li><strong>Detachable herb chambers:</strong> Often metal or ceramic, easy to load and clean.</li>
+          <li><strong>Food-safe bags:</strong> Designed to handle warm vapor safely.</li>
+        </ul>
+
+        <p><strong>Best for:</strong></p>
+        <ul>
+          <li>Home users who want top-tier vapor quality and flavor.</li>
+          <li>People who regularly share sessions with friends or partners.</li>
+          <li>Medical users who want consistent, low-irritation doses.</li>
+        </ul>
+
+        <p><strong>Not as good for:</strong></p>
+        <ul>
+          <li>Not portable—meant to stay on a table or desk.</li>
+          <li>Higher cost than most portable vapes and many other devices.</li>
+          <li>Bags and parts need to be replaced or cleaned over time.</li>
+          <li>Setup takes more space and is less discreet than pens or small portables.</li>
+        </ul>
+
+        <p><strong>Typical price ranges:</strong> Entry-level desktop vapes $150–$300, mid-range $300–$500, premium
+          units like the Volcano $500+.</p>
+
+        <a href="https://autobongs.com/collections/dry-herb-vaporizers" class="cta-button">Explore Desktop
+          Vaporizers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRY HERB GUIDE SECTION -->
+
+  <h2 id="section-dry-herb-guide">Dry Herb Guide</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 30px; font-size: 1.1em;">Essential knowledge for getting the
+    most out of your flower.</p>
+
+  <!-- STORAGE ACCESSORIES -->
+  <section id="section-storage">
+    <div class="product-box">
+      <img alt="Storage Accessories for Dry Herb and Concentrates"
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Dec_2_2025_08_01_08_PM.png?v=1764730945"
+        style="max-width: 35%;">
+      <div class="product-content">
+
+        <h3>Dry Herb &amp; Concentrated Herb Storage Accessories</h3>
+
+        <p>How you store your material matters almost as much as how you use it. Good storage keeps your dry herb fresh,
+          your concentrates stable, and your sessions consistent. The right accessories protect against light, air,
+          heat, and sticky messes—so you're not wasting potency or flavor.</p>
+
+        <h3>For Dry Herb</h3>
+
+        <p>The goal is to keep it <strong>cool, dark, and slightly humid</strong> (but not wet):</p>
+
+        <div style="display: grid; gap: 12px; margin: 20px 0;">
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>Airtight Jars</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Especially glass with tight lids—help prevent your herb
+              from drying out or getting stale.</p>
+          </div>
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>UV-Protective or Opaque Containers</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Block light, which can degrade cannabinoids and terpenes
+              over time.</p>
+          </div>
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>Humidity Packs</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Help keep your herb in a comfortable range so it doesn't
+              become crispy or overly moist.</p>
+          </div>
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>Smell-Proof Containers or Bags</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Great if you need extra discretion and don't want the whole
+              room announcing what you bought.</p>
+          </div>
+        </div>
+
+        <h3>For Concentrated Herb (Dabs, Waxes, Rosin, etc.)</h3>
+
+        <p>You're fighting <strong>heat and stickiness</strong>:</p>
+
+        <div style="display: grid; gap: 12px; margin: 20px 0;">
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>Non-Stick Silicone Containers</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Make it easy to scoop, load, and finish your concentrates
+              without losing half of it to the walls.</p>
+          </div>
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>Glass Jars with Tight Lids</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Excellent for preserving flavor and texture, especially for
+              higher-end rosin or live resin.</p>
+          </div>
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>Cool Storage Spots</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Small, insulated areas away from direct sun or hot windows
+              help keep concentrates from getting runny or separating.</p>
+          </div>
+        </div>
+
+        <p style="margin-top: 20px; padding: 15px; background-color: #333; border-radius: 8px; font-size: 0.95em;">
+          <strong>💡 Bottom Line:</strong> Using dedicated storage accessories means less waste, better flavor, and more
+          predictable sessions. Instead of dried-out flower or overheated concentrate stuck to a random piece of
+          parchment, your material stays organized, potent, and ready to go whenever you are.</p>
+
+        <div style="margin-top: 25px; text-align: center;">
+          <a href="https://autobongs.com/collections/accessories" class="cta-button">Shop Storage Accessories</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HERB GRINDERS & MILLING GRINDERS -->
+  <section id="section-grinders">
+    <div class="product-box">
+      <img alt="Herb Grinders and Milling Grinders"
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Dec_1_2025_04_55_35_PM.png?v=1764635120"
+        style="max-width: 35%;">
+      <div class="product-content">
+
+        <h3>Herb Grinders &amp; Milling Grinders: How They Work and Why They Matter</h3>
+
+        <p>Herb grinders break your dry herb into smaller, even pieces so it burns or vaporizes more smoothly and
+          efficiently. Instead of ripping chunks by hand or using scissors, a grinder gives you a consistent texture
+          that packs better bowls, cones, and chambers.</p>
+
+        <h3>How to Use a Standard Herb Grinder</h3>
+
+        <p>Most traditional grinders have two or four pieces with metal or plastic "teeth" inside. Using one is simple:
+        </p>
+
+        <div style="background-color: #333; border-radius: 10px; padding: 20px; margin: 20px 0;">
+          <ol>
+            <li><strong>Open the lid</strong> and break your herb into small chunks.</li>
+            <li><strong>Place the herb</strong> around the teeth (not directly in the center where the magnet is).</li>
+            <li><strong>Close the grinder</strong> until it's snug.</li>
+            <li><strong>Twist</strong> the top and bottom in opposite directions for 5–15 seconds, depending on how fine
+              you want it.</li>
+            <li><strong>Tap gently</strong> and open the bottom chamber (if you have one) to access your ground herb.
+            </li>
+          </ol>
+          <p style="margin: 15px 0 0 0; font-size: 0.95em; color: #aaa;"><em>If your grinder has a kief catcher, some of
+              the fine, powdery trichomes will fall through a screen and collect in the bottom over time.</em></p>
+        </div>
+
+        <h3>The Benefits of Using a Grinder</h3>
+
+        <p>Using a grinder instead of your fingers isn't just about convenience. It can change your whole session:</p>
+
+        <ul>
+          <li><strong>More even burn or vaporization:</strong> A consistent grind helps bowls, bongs, pipes, and dry
+            herb vapes heat more evenly.</li>
+          <li><strong>Better airflow:</strong> No huge chunks blocking your bowl or vape chamber.</li>
+          <li><strong>Stronger, cleaner hits:</strong> Less canoeing in joints and fewer hot spots.</li>
+          <li><strong>Less sticky fingers:</strong> You keep more trichomes on the herb and less on your skin.</li>
+          <li><strong>Kief collection:</strong> Multi-piece grinders let you save kief for a "bonus" bowl, sprinkle, or
+            special session later.</li>
+        </ul>
+
+        <h3>What Is a Milling Grinder &amp; How Is It Different?</h3>
+
+        <p><strong>Milling grinders</strong> (sometimes called "flower mills" or milling-style grinders) work a little
+          differently from classic tooth grinders.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+          <div style="background-color: #333; border: 2px solid #444; padding: 20px; border-radius: 10px;">
+            <strong style="font-size: 1.1em;"> Tooth Grinder</strong>
+            <p style="margin: 10px 0 0 0; font-size: 0.95em;">Uses sharp teeth to <strong>shred and tear</strong> the
+              herb as you twist.</p>
+          </div>
+          <div style="background-color: #333; border: 2px solid #444; padding: 20px; border-radius: 10px;">
+            <strong style="font-size: 1.1em;"> Milling Grinder</strong>
+            <p style="margin: 10px 0 0 0; font-size: 0.95em;">Uses a rotating plate with shaped edges or flutes that
+              <strong>gently mills</strong> the herb against the walls, like a tiny food mill.</p>
+          </div>
+        </div>
+
+        <h3>Key Differences You'll Notice</h3>
+
+        <div style="display: grid; gap: 12px; margin: 20px 0;">
+          <div
+            style="background-color: #333; padding: 15px; border-radius: 8px; display: flex; gap: 15px; align-items: flex-start;">
+            <span style="font-size: 1.5em;"></span>
+            <div>
+              <strong>Texture</strong>
+              <p style="margin: 5px 0 0 0; font-size: 0.95em;">Milling grinders often produce a fluffier, more uniform
+                grind that's great for dry herb vaporizers and evenly packed bowls.</p>
+            </div>
+          </div>
+          <div
+            style="background-color: #333; padding: 15px; border-radius: 8px; display: flex; gap: 15px; align-items: flex-start;">
+            <span style="font-size: 1.5em;"></span>
+            <div>
+              <strong>Less Plant Damage</strong>
+              <p style="margin: 5px 0 0 0; font-size: 0.95em;">Instead of aggressively shredding, the milling action can
+                be gentler on trichomes, which may help keep flavor and potency.</p>
+            </div>
+          </div>
+          <div
+            style="background-color: #333; padding: 15px; border-radius: 8px; display: flex; gap: 15px; align-items: flex-start;">
+            <span style="font-size: 1.5em;"></span>
+            <div>
+              <strong>Ease of Use</strong>
+              <p style="margin: 5px 0 0 0; font-size: 0.95em;">Many milling grinders feel smoother to turn, especially
+                with stickier herb.</p>
+            </div>
+          </div>
+          <div
+            style="background-color: #333; padding: 15px; border-radius: 8px; display: flex; gap: 15px; align-items: flex-start;">
+            <span style="font-size: 1.5em;">🧹</span>
+            <div>
+              <strong>Cleaning</strong>
+              <p style="margin: 5px 0 0 0; font-size: 0.95em;">Because there are no sharp teeth and fewer tight corners,
+                milling grinders can be easier to brush out and wipe clean.</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="margin-top: 25px; padding: 20px; background-color: #333; border: 2px solid #444; border-radius: 10px;">
+          <p style="margin: 0; font-size: 1em;"><strong>Which Should You Choose?</strong><br><br>
+            If you like quick, simple grinding and don't mind a slightly rougher texture, a <strong>classic tooth-style
+              grinder</strong> will do the job. If you're really into vaping dry herb, flavor, and consistency, or you
+            just want smoother twisting and easier maintenance, a <strong>milling-style grinder</strong> can be a very
+            worthwhile upgrade.</p>
+        </div>
+
+        <div style="margin-top: 25px; text-align: center;">
+          <a href="https://autobongs.com/collections/accessories" class="cta-button">Shop Grinders</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCENTRATED HERBS GUIDE SECTION -->
+
+  <h2 id="section-concentrate-temps"> Concentrated Herbs (Oils, Waxes &amp; Dabs)</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 30px; font-size: 1.1em;">Master the art of temperature
+    control for the best concentrate experience.</p>
+
+  <section>
+    <div class="product-box">
+      <img alt="Concentrated Herbs Temperature Guide"
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/ChatGPT_Image_Dec_1_2025_05_17_51_PM.png?v=1764635120"
+        style="max-width: 35%;">
+      <div class="product-content">
+
+
+        <h3>Understanding Temperature Ranges</h3>
+
+        <p>Concentrated herbs are purified versions of the plant — oils, waxes, shatter, rosin, and other extracts that
+          pack a lot of potency into a tiny amount of material. Because they're so dense and sensitive to heat,
+          <strong>temperature control matters even more with concentrates than with dried flower</strong>. Getting the
+          temp right affects flavor, smoothness, potency, and how often you have to clean your gear.</p>
+
+
+        <p>For most concentrates, you generally want <strong>at least around 375°F</strong> for effective vaporization.
+          Below that, you may see a little melt and light vapor, but many people find the effects weak and inconsistent.
+        </p>
+
+        <p><strong>Around 450°F is a common "sweet spot"</strong> for a lot of users — warm enough to fully vaporize
+          your concentrates, but still cool enough to keep the flavor bright and the vapor smooth.</p>
+
+        <p>As you push higher, into the <strong>500–600°F range</strong>, you'll usually get denser clouds and a
+          stronger hit, but the tradeoff is hotter, harsher vapor. Your banger or atomizer will also pick up more dark,
+          burnt residue.</p>
+
+        <p>Once you're going past about <strong>600°F</strong>, you're basically cooking your material rather than
+          gently vaporizing it — that can taste burnt, feel uncomfortable on your throat and lungs, and leave you with a
+          lot more cleanup.</p>
+
+        <h3>Why Lower Temperatures Win</h3>
+
+        <p>Staying on the lower side has big advantages:</p>
+
+        <ul>
+          <li><strong>Better flavor:</strong> Terpenes (the compounds that give concentrates their taste and smell) are
+            more noticeable at moderate temps.</li>
+          <li><strong>Smoother hits:</strong> Lower temperatures are usually easier on your throat and chest, especially
+            for people who are sensitive to heat.</li>
+          <li><strong>Easier cleaning:</strong> When you're not overheating your dabs, your banger, insert, or atomizer
+            is much easier to clean — less black, crusty buildup and more light, wipeable residue.</li>
+        </ul>
+
+        <h3>Temperature Quick Reference</h3>
+
+        <div style="display: grid; gap: 15px; margin: 20px 0;">
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>375–450°F — Low Temp (Flavor Zone)</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Best flavor and smoothest hits. Ideal for terpene-rich live
+              resins and rosins. Light vapor clouds. Easiest cleanup.</p>
+          </div>
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>450–500°F — Medium Temp (Balanced)</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Good balance of flavor and vapor production. Works well
+              with most concentrate types. Moderate cleanup needed.</p>
+          </div>
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>500–600°F — High Temp (Cloud Zone)</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Dense clouds and stronger effects. Harsher on throat. More
+              residue buildup. Some flavor loss.</p>
+          </div>
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong>600°F+ — Too Hot (Combustion Zone)</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;">Burns material instead of vaporizing. Harsh taste and feel.
+              Heavy black residue. Not recommended.</p>
+          </div>
+        </div>
+
+        <h3>Finding Your Perfect Temperature</h3>
+
+        <p>Whether you're using a torch and banger, an e-nail, or a concentrated-herb vaporizer, it's usually smart to
+          <strong>start on the lower side (around 375–450°F)</strong> and slowly work your way up until you find the
+          temperature range that feels comfortable, tastes good, and gives you the experience you're looking for—without
+          roasting your concentrate or your lungs.</p>
+
+        <p style="margin-top: 20px; padding: 15px; background-color: #333; border-radius: 8px; font-size: 0.95em;">
+          <strong>💡 Pro Tip:</strong> If you're using a torch, invest in a temperature gun or timer to get consistent
+          results. With e-nails and electric rigs, take advantage of the precise temperature controls — they're there
+          for a reason!</p>
+
+        <div style="margin-top: 25px; text-align: center;">
+          <a href="https://autobongs.com/collections/dab-rigs" class="cta-button" style="margin-right: 10px;">Shop Dab
+            Rigs</a>
+          <a href="https://autobongs.com/collections/concentrated-herb-vaporizers" class="cta-button">Shop Concentrate
+            Vapes</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <h2 id="section-perc-recycler">Different Dab Rig Percolation &amp; Recycling</h2>
+  <p style="text-align: center; color: #aaa; margin-bottom: 30px; font-size: 1.1em;">Understanding how water movement
+    affects your dabbing experience.</p>
+
+  <section>
+    <div class="product-box">
+      <img alt="Dab Rig Percolation and Recycler Styles"
+        src="https://cdn.shopify.com/s/files/1/0623/6566/3311/files/Perc2.png?v=1764731276"
+        style="max-width: 35%;">
+      <div class="product-content">
+
+        <p>Dab rigs aren't just "small bongs for concentrates" — the way they move and cool the water
+          (<strong>percolation</strong> and <strong>recycling</strong>) has a huge impact on how your hits feel.
+          Percolation breaks your vapor into tiny bubbles to cool and filter it. Recycling moves that water around the
+          piece over and over, keeping it flowing and cool while reducing splashback.</p>
+
+        <h3>Common Dab Rig Percolator Types</h3>
+
+        <div style="display: grid; gap: 15px; margin: 20px 0;">
+
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong style="font-size: 1.1em;">Simple Diffused Downstem / Open Perc</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em; color: #ccc;">Just a few slits or holes.</p>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;"><strong>Pros:</strong> Very easy to clean, low drag, great
+              for flavor chasers.</p>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;"><strong>Cons:</strong> Less cooling and filtration than
+              more complex percs.</p>
+          </div>
+
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong style="font-size: 1.1em;">Showerhead Perc</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em; color: #ccc;">A vertical tube ending in a flared
+              "showerhead" with slits or holes.</p>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;"><strong>Pros:</strong> Smooth, even diffusion; good balance
+              between cooling and flavor.</p>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;"><strong>Cons:</strong> Can build up reclaim in the slits if
+              you dab hot or don't clean regularly.</p>
+          </div>
+
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong style="font-size: 1.1em;">Honeycomb &amp; Disc Percs</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em; color: #ccc;">Flat discs packed with many small holes.</p>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;"><strong>Pros:</strong> Tons of tiny bubbles and nice visual
+              function.</p>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;"><strong>Cons:</strong> More surface for reclaim to stick
+              to; can be harder to fully clean.</p>
+          </div>
+
+          <div style="background-color: #333; border-left: 4px solid #4a9eff; padding: 15px; border-radius: 8px;">
+            <strong style="font-size: 1.1em;">Matrix / Barrel / Fab-Style Percs</strong>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em; color: #ccc;">Cylindrical or orb-like percs with multiple
+              slits/holes all around.</p>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;"><strong>Pros:</strong> Very smooth hits and strong
+              diffusion, great for people who want soft, cooled vapor.</p>
+            <p style="margin: 8px 0 0 0; font-size: 0.95em;"><strong>Cons:</strong> More parts = more drag and more
+              cleaning.</p>
+          </div>
+
+        </div>
+
+        <h3>What Is a Recycler Dab Rig?</h3>
+
+        <p>A <strong>recycler rig</strong> is designed so the water continuously cycles through the piece. You pull in,
+          the water and vapor travel up through one section, then the water "recycles" back down into the main chamber
+          while the vapor goes to your mouthpiece.</p>
+
+        <h3>Key Benefits of Recycler-Style Rigs</h3>
+
+        <ul>
+          <li><strong>Smoother, cooler hits:</strong> Constant movement keeps water from going stale and helps cool
+            vapor more evenly.</li>
+          <li><strong>Less splashback:</strong> The design channels water away from your mouthpiece, even with strong
+            pulls.</li>
+          <li><strong>Great for flavor:</strong> Many recyclers use moderate percs plus gentle recycling, which can
+            preserve terpenes compared to super-aggressive diffusion.</li>
+        </ul>
+
+        <p>You'll see different recycler styles like <strong>external recyclers</strong>, <strong>incyclers</strong>
+          (internal recycling), and <strong>multi-arm recyclers</strong>. In general, more pathways and percs mean more
+          cooling and smoother hits, but also more drag and more places for reclaim to collect.</p>
+
+        <h3>Which Should You Choose?</h3>
+
+        <div style="display: grid; gap: 15px; margin: 20px 0;">
+          <div style="background-color: #333; border: 2px solid #444; padding: 20px; border-radius: 10px;">
+            <strong style="font-size: 1.15em;"> New to Concentrates?</strong>
+            <p style="margin: 10px 0 0 0;">A simple <strong>showerhead or small matrix perc rig</strong> is usually a
+              great starting point: easy to use, not too draggy, and still smooth.</p>
+          </div>
+          <div style="background-color: #333; border: 2px solid #444; padding: 20px; border-radius: 10px;">
+            <strong style="font-size: 1.15em;"> Ready for the Next Level?</strong>
+            <p style="margin: 10px 0 0 0;">If you love longer, cooler pulls and enjoy watching the function, a
+              <strong>recycler dab rig</strong> can feel more "advanced" and ritualistic, turning each dab into a little
+              water show while keeping your hits comfortable.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 25px; text-align: center;">
+          <a href="https://autobongs.com/collections/dab-rigs" class="cta-button">Shop Dab Rigs</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+<!-- END GUIDE WRAPPER -->
+
+<footer id="section-chat-footer">
+  <p>Do You Have Any More Questions? Would You Like to Be Guided to Your Own Narrowed-Down Collection of Products
+    Based on Your Style and Needs? Check out our Curation Tool and Chat Assistant!</p>
+  <p>The Curation Tool will take you through our products and ask you an extensive series of questions to determine
+    what you'll love the most out of everything we have. Throughout the process you will learn about everything
+    you're being shown, you could be brand new to this scene and end up with a basic education in these products by
+    the end of it. This helps tremendously when dealing with such a vast variety of products that have specific
+    functions and applications.</p>
+  <p>Our Chat Assistant is trained and programmed by industry professionals to be the best product specialist and
+    customer service agent you could hope for in a smoke shop. Get product recommendations, ask questions, learn
+    everything you need to know until you feel confident about your purchase.</p>
+  <a href="https://autobongs.com/pages/chat-assistant" class="cta-button">Ask our product specialist chatbot</a>
+</footer>
+
+<!-- COLLAPSIBLE MENU SCRIPT -->
+<script>
+  (function () {
+    var toggle = document.getElementById('autobongs-menu-toggle');
+    var links = document.getElementById('autobongs-menu-links');
+    if (!toggle || !links) return;
+
+    // Start collapsed
+    toggle.setAttribute('data-open', 'false');
+    links.style.display = 'none';
+
+    toggle.addEventListener('click', function () {
+      var isOpen = toggle.getAttribute('data-open') === 'true';
+      if (isOpen) {
+        links.style.display = 'none';
+        toggle.setAttribute('data-open', 'false');
+        toggle.innerHTML = '☰ Jump to Section';
+      } else {
+        links.style.display = 'flex';
+        toggle.setAttribute('data-open', 'true');
+        toggle.innerHTML = '✕ Close Menu';
+      }
+    });
+
+    // Add hover effects to all menu links
+    var menuLinks = links.querySelectorAll('a');
+    menuLinks.forEach(function (link) {
+      link.addEventListener('mouseenter', function () {
+        this.style.backgroundColor = '#3a3a3a';
+      });
+      link.addEventListener('mouseleave', function () {
+        this.style.backgroundColor = '#262626';
+      });
+      // Close menu on link click (mobile UX improvement)
+      link.addEventListener('click', function () {
+        if (window.innerWidth < 768) {
+          links.style.display = 'none';
+          toggle.setAttribute('data-open', 'false');
+          toggle.innerHTML = '☰ Jump to Section';
+        }
+      });
+    });
+
+    // Toggle button hover
+    toggle.addEventListener('mouseenter', function () {
+      this.style.backgroundColor = '#2a2a2a';
+    });
+    toggle.addEventListener('mouseleave', function () {
+      this.style.backgroundColor = '#1f1f1f';
+    });
+  })();
+</script>
+
+</body>
+</html>
